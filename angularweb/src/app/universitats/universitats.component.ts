@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Universitat } from '../universitat';
+import { UNIVERSITATS } from '../universitats_list';
 
 @Component({
   selector: 'app-universitats',
@@ -9,10 +10,7 @@ import { Universitat } from '../universitat';
 })
 export class UniversitatsComponent implements OnInit {
 
-  universitat: Universitat = {
-    id: 1,
-    name: 'Universitat Politècnica de Catalunya'
-  };
+  universitats = UNIVERSITATS;
 
   constructor() { }
 

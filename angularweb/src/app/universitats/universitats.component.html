@@ -1,3 +1,7 @@
-<div class="content">
-  <h1>{{universitat.name}}</h1>
-</div>
+<ul class="llistat">
+  <li *ngFor="let universitat of universitats">
+    <div class="content">
+      <h1>{{universitat.name}}</h1>
+    </div>
+  </li>
+</ul>

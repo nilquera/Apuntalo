@@ -3,3 +3,7 @@
   width: 75%;
   font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
+
+ul{
+  list-style: none;
+}
