@@ -1,5 +1,5 @@
 <ul class="llistat">
-  <li *ngFor="let universitat of universitats">
+  <li *ngFor="let universitat of universitats" (click)="onSelect(universitat)">
     <div class="content">
       <a href="#"><h3>{{universitat.name}}</h3></a>
     </div>

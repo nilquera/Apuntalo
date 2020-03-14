@@ -11,10 +11,14 @@ import { UNIVERSITATS } from '../universitats_list';
 export class UniversitatsComponent implements OnInit {
 
   universitats = UNIVERSITATS;
-
+  selectedUniversitat: Universitat;
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  onSelect(universitat: Universitat): void {
+  this.selectedUniversitat = universitat;
+}
 
 }
