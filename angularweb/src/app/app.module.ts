@@ -7,6 +7,8 @@ import { UniversitatsComponent } from './universitats/universitats.component';
 import { LoginComponent } from './login/login.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { RegistroComponent } from './registro/registro.component';
+import { CarrerasComponent } from './carreras/carreras.component';
+import { AsignaturasComponent } from './asignaturas/asignaturas.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { RegistroComponent } from './registro/registro.component';
     UniversitatsComponent,
     LoginComponent,
     NosotrosComponent,
-    RegistroComponent
+    RegistroComponent,
+    CarrerasComponent,
+    AsignaturasComponent
   ],
   imports: [
     BrowserModule,
