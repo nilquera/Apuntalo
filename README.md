@@ -3,7 +3,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/nilquera/Apuntalo">
-    <img src="images/logo1.png" alt="Logo" width="300" height="300">
+    <img src="img/logo1.png" alt="Logo" width="300" height="300">
   </a>
   <p align="center">
     An awesome collaborative student environment to create, develop and sell your class notes!
@@ -99,4 +99,4 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 [issues-url]: https://github.com/nilquera/Apuntalo/issues
 [license-shield]: https://img.shields.io/github/license/nilquera/apuntalo.svg?style=flat-square
 [license-url]: https://github.com/nilquera/Apuntalo/blob/master/LICENSE.txt
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: img/screenshot.png
