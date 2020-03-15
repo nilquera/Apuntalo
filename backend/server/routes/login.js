@@ -48,6 +48,15 @@ app.post('/login', (req, res) => {
             })
         }
 
+        if (userDB.state === false) {
+            return res.status(400).json({
+                ok: false,
+                err: {
+                    message: 'User is disabled'
+                }
+            })
+        }
+
         let token = jwt.sign({
             user: userDB
         }, process.env.SEED, { expiresIn: process.env.EXPIRATION_TOKEN })
