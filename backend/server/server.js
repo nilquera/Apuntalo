@@ -21,9 +21,9 @@ mongoose.connect(process.env.URLDB, {
   useCreateIndex: true
 }, (err) => {
   if (err) throw err
-  console.log("[ OK ] Connected to database");
+  console.log("[ OK ] connected to database");
 
   app.listen(process.env.PORT, () => {
-      console.log("[ OK ] Listening on port", process.env.PORT);
+      console.log("[ OK ] listening on port", process.env.PORT);
   })
 });

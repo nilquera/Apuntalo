@@ -9,10 +9,20 @@ const User = require('../models/user')
 
 const app = express()
 
+// login with username or email
 app.post('/login', (req, res) => {
     let body = req.body
 
-    User.findOne({email: body.email}, (err, userDB) => {
+    if (!body.password){
+        return res.status(400).json({
+            ok: false,
+            err: {
+                message: 'Password not provided'
+            }
+        })
+    }
+
+    User.findOne({ $or:[{email: body.email}, {username: body.username}]}, (err, userDB) => {
         if (err) {
             return res.status(500).json({
                 ok: false,
@@ -24,7 +34,7 @@ app.post('/login', (req, res) => {
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: '(User) o contraseña incorrectos'
+                    message: '(User) or password not valid'
                 }
             })
         }
@@ -33,7 +43,7 @@ app.post('/login', (req, res) => {
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: 'User o (contraseña) incorrectos'
+                    message: 'User or (password) not valid'
                 }
             })
         }
