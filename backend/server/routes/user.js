@@ -1,68 +1,54 @@
 const express = require('express')
 const bcrypt = require('bcrypt')
 const _ = require('underscore')
-const Usuario = require('../models/usuario')
+const User = require('../models/user')
 const { verifyToken, verifyAdmin } = require('../middlewares/authentication')
 const app = express()
 
-app.get('/usuario', verifyToken, (req, res) => {
+// Returns DB users with state: true [needs valid token]
+app.get('/user', (req, res) => {
     let from = req.query.from || 0
     from = Number(from)
     let limit = req.query.limit || 5
     limit = Number(limit)
 
-    Usuario.find({estado: true}, 'nombre email role estado google img')
+    User.find({state: true}, 'name email role state google img')
     .skip(from)
     .limit(limit)
-    .exec((err, usuarios) => {
+    .exec((err, users) => {
         if (err) {
-            return res.status(400).json({
+            return res.status(500).json({
                 ok: false,
                 err
             })
         }
-        Usuario.count({estado: true}, (err, count) => {
+
+        User.count({state: true}, (err, count) => {
             res.json({
                 ok: true,
                 count,
-                usuarios
+                users
             })
         })
     })
 })
 
-app.post('/usuario', [verifyToken, verifyAdmin], (req, res) => {
+// Creates DB user with values in body [needs valid token with admin privilege]
+app.post('/user', (req, res) => {
     let body = req.body
 
-    let usuario = new Usuario({
-        nombre: body.nombre,
+    let user = new User({
+        username: body.username,
         email: body.email,
         password: bcrypt.hashSync(body.password, 10),
-        role: body.role
+        role: body.role,
+        name: body.name,
+        university: body.university,
+        degree: body.degree,
+        img: body.img
     });
 
-    usuario.save((err, usuarioDB) => {
-        if (err) {
-            return res.status(400).json({
-                ok: false,
-                err
-            })
-        }
-
-        // usuarioDB.password = null
-
-        res.json({
-            ok: true,
-            usuario: usuarioDB
-        })
-    })
-})
-
-app.put('/usuario/:id', [verifyToken, verifyAdmin], (req, res) => {
-    let id = req.params.id
-    let body = _.pick(req.body, ['nombre', 'email', 'img', 'role', 'estado']);
-
-    Usuario.findByIdAndUpdate(id, body, {new: true, runValidators: true}, (err, usuarioDB) => {
+    user.save((err, userDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
@@ -72,19 +58,18 @@ app.put('/usuario/:id', [verifyToken, verifyAdmin], (req, res) => {
 
         res.json({
             ok: true,
-            usuario: usuarioDB
+            user: userDB
         })
     })
 })
 
-app.delete('/usuario/:id', [verifyToken, verifyAdmin], (req, res) => {
+// Modify user by id [needs valid token with admin privilege]
+app.put('/user/:id', (req, res) => {
     let id = req.params.id
+    // deletes password field or any other --> avoids password update
+    let body = _.pick(req.body, ['username', 'email', 'role', 'state', 'name', 'university', 'degree', 'img']);
 
-    let cambiaEstado = {
-        estado: false
-    }
-
-    Usuario.findByIdAndUpdate(id, cambiaEstado, {new: true}, (err, usuarioDB) => {
+    User.findByIdAndUpdate(id, body, {new: true, runValidators: true}, (err, userDB) => {
         if (err) {
             return res.status(400).json({
                 ok: false,
@@ -92,22 +77,50 @@ app.delete('/usuario/:id', [verifyToken, verifyAdmin], (req, res) => {
             })
         }
 
-        if (!usuarioDB){
-            return res.status(400).json({
+        if (!userDB){
+            return res.status(404).json({
                 ok: false,
                 err: {
-                    message: "User not found"
+                    message: `User with id ${id} not found`
                 }
             })
         }
 
         res.json({
             ok: true,
-            usuario: usuarioDB
+            user: userDB
+        })
+    })
+})
+
+// Delete user by id [needs valid token with admin privilege]
+app.delete('/user/:id', (req, res) => {
+    let id = req.params.id
+
+    User.findByIdAndUpdate(id, {state: false}, {new: true}, (err, userDB) => {
+        if (err) {
+            return res.status(400).json({
+                ok: false,
+                err
+            })
+        }
+
+        if (!userDB){
+            return res.status(404).json({
+                ok: false,
+                err: {
+                    message: `User with id ${id} not found`
+                }
+            })
+        }
+
+        res.json({
+            ok: true,
+            user: userDB
         })
     })
 
-    // Usuario.findByIdAndRemove(id, (err, usuarioBorrado) => {
+    // User.findByIdAndRemove(id, (err, userBorrado) => {
     //   if (err) {
     //     return res.status(400).json({
     //       ok: false,
@@ -115,7 +128,7 @@ app.delete('/usuario/:id', [verifyToken, verifyAdmin], (req, res) => {
     //     })
     //   }
     //
-    //   if (!usuarioBorrado){
+    //   if (!userBorrado){
     //     return res.status(400).json({
     //       ok: false,
     //       err: {
@@ -126,7 +139,7 @@ app.delete('/usuario/:id', [verifyToken, verifyAdmin], (req, res) => {
     //
     //   res.json({
     //     ok: true,
-    //     usuario: usuarioBorrado
+    //     user: userBorrado
     //   })
     // })
 })

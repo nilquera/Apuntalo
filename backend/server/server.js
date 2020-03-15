@@ -7,16 +7,13 @@ const bodyParser = require('body-parser')
 
 const app = express()
 
-//parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false}))
-//parse application/json
 app.use(bodyParser.json())
-// Configuración global de rutas
 app.use(require('./routes/index'))
 
 // Habilitar la carpeta public
 // app.use(express.static(path.resolve(__dirname, '../public')))
-app.use(express.static(path.resolve(__dirname, '../public')));
+// app.use(express.static(path.resolve(__dirname, '../public')));
 
 mongoose.connect(process.env.URLDB, {
   useNewUrlParser: true,
@@ -24,9 +21,9 @@ mongoose.connect(process.env.URLDB, {
   useCreateIndex: true
 }, (err) => {
   if (err) throw err
-  console.log("base de datos ONLINE");
-});
+  console.log("[ OK ] Connected to database");
 
-app.listen(process.env.PORT, () => {
-  console.log("Escuchando en puerto", process.env.PORT);
-})
+  app.listen(process.env.PORT, () => {
+      console.log("[ OK ] Listening on port", process.env.PORT);
+  })
+});
