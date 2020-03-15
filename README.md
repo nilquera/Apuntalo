@@ -47,6 +47,9 @@ Apuntalo es una webapp para editar documentos relacionados con la universidad de
 * [Etherpad](https://etherpad.org/)
 * [MongoDB](https://www.mongodb.com/)
 
+## REST API
+El backend consiste en una REST API hecha con nodejs. Consulta el siguiente enlace para ver los endpoints disponibles.
+[Documentacion API](https://documenter.getpostman.com/view/4392922/SzS2xoCu?version=latest#1c6af55e-3e91-42e8-90af-9f28e0a32e72)
 
 <!-- Primeros Pasos -->
 ## Primeros pasos
