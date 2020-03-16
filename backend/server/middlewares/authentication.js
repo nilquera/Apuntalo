@@ -1,8 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-// ========================
-//  Token Verification
-// ========================
+// Token Verification
 let verifyToken = (req, res, next) => {
   let token = req.get('Authorization')
 
@@ -16,24 +14,22 @@ let verifyToken = (req, res, next) => {
       })
     }
 
-    req.usuario = decoded.usuario
+    req.user = decoded.user
 
     next()
   })
 }
 
-// ========================
-//  Admin Role Verification
-// ========================
+// Admin Role Verification
 let verifyAdmin = (req, res, next) => {
-  let user = req.usuario
+  let user = req.user
   if (user.role === 'ADMIN_ROLE'){
     next()
   } else {
     return res.status(401).json({
       ok: false,
       err: {
-        message: 'Necesitas privilegios de administrador'
+        message: 'You need admin privileges'
       }
     })
   }

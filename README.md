@@ -1,27 +1,13 @@
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-
-
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
   <a href="https://github.com/nilquera/Apuntalo">
-    <img src="images/logo1.png" alt="Logo" width="300" height="300">
+    <img src="img/logo1.png" alt="Logo" width="300" height="300">
   </a>
   <p align="center">
     An awesome collaborative student environment to create, develop and sell your class notes!
-    <br />
+    <!-- <br />
     <a href="https://github.com/nilquera/Apuntalo"><strong>Explore the docs »</strong></a>
     <br />
     <br />
@@ -29,7 +15,7 @@
     ·
     <a href="https://github.com/nilquera/Apuntalo/issues">Report Bug</a>
     ·
-    <a href="https://github.com/nilquera/Apuntalo/issues">Request Feature</a>
+    <a href="https://github.com/nilquera/Apuntalo/issues">Request Feature</a> -->
   </p>
 </p>
 
@@ -61,6 +47,9 @@ Apuntalo es una webapp para editar documentos relacionados con la universidad de
 * [Etherpad](https://etherpad.org/)
 * [MongoDB](https://www.mongodb.com/)
 
+## REST API
+El backend consiste en una REST API hecha con nodejs. Consulta el siguiente enlace para ver los endpoints disponibles.
+[Documentacion API](https://documenter.getpostman.com/view/4392922/SzS2xoCu?version=latest#1c6af55e-3e91-42e8-90af-9f28e0a32e72)
 
 <!-- Primeros Pasos -->
 ## Primeros pasos
@@ -113,4 +102,4 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 [issues-url]: https://github.com/nilquera/Apuntalo/issues
 [license-shield]: https://img.shields.io/github/license/nilquera/apuntalo.svg?style=flat-square
 [license-url]: https://github.com/nilquera/Apuntalo/blob/master/LICENSE.txt
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: img/screenshot.png

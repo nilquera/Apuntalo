@@ -5,14 +5,24 @@ const jwt = require('jsonwebtoken')
 const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client(process.env.CLIENT_ID);
 
-const Usuario = require('../models/usuario')
+const User = require('../models/user')
 
 const app = express()
 
+// login with username or email
 app.post('/login', (req, res) => {
     let body = req.body
 
-    Usuario.findOne({email: body.email}, (err, usuarioDB) => {
+    if (!body.password){
+        return res.status(400).json({
+            ok: false,
+            err: {
+                message: 'Password not provided'
+            }
+        })
+    }
+
+    User.findOne({ $or:[{email: body.email}, {username: body.username}]}, (err, userDB) => {
         if (err) {
             return res.status(500).json({
                 ok: false,
@@ -20,31 +30,40 @@ app.post('/login', (req, res) => {
             })
         }
 
-        if (!usuarioDB) {
+        if (!userDB) {
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: '(Usuario) o contraseña incorrectos'
+                    message: '(User) or password not valid'
                 }
             })
         }
 
-        if (!bcrypt.compareSync(body.password, usuarioDB.password)){
+        if (!bcrypt.compareSync(body.password, userDB.password)){
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: 'Usuario o (contraseña) incorrectos'
+                    message: 'User or (password) not valid'
+                }
+            })
+        }
+
+        if (userDB.state === false) {
+            return res.status(400).json({
+                ok: false,
+                err: {
+                    message: 'User is disabled'
                 }
             })
         }
 
         let token = jwt.sign({
-            usuario: usuarioDB
+            user: userDB
         }, process.env.SEED, { expiresIn: process.env.EXPIRATION_TOKEN })
 
         res.json({
             ok: true,
-            usuario: usuarioDB,
+            user: userDB,
             token
         })
     })
@@ -79,7 +98,7 @@ app.post('/google', async(req, res) => {
         })
     })
 
-    Usuario.findOne({email: googleUser.email}, (err, usuarioDB) => {
+    User.findOne({email: googleUser.email}, (err, userDB) => {
         if (err) {
             return res.status(500).json({
                 ok: false,
@@ -87,34 +106,34 @@ app.post('/google', async(req, res) => {
             })
         }
 
-        if (usuarioDB){
-            if (usuarioDB.google === false){ //usuario ya existe pero no se registró con google
+        if (userDB){
+            if (userDB.google === false){ //user ya existe pero no se registró con google
                 return res.status(400).json({
                     ok: false,
                     err: {
                         message: "Debe de usar su autenticación normal"
                     }
                 })
-            } else { //usuario existe y se registró con google
+            } else { //user existe y se registró con google
                 let token = jwt.sign({
-                    usuario: usuarioDB
+                    user: userDB
                 }, process.env.SEED, { expiresIn: process.env.EXPIRATION_TOKEN })
 
                 return res.json({
                     ok: true,
-                    usuario: usuarioDB,
+                    user: userDB,
                     token
                 })
             }
-        } else { //usuario no existe
-            let usuario = new Usuario();
-            usuario.nombre = googleUser.nombre
-            usuario.email = googleUser.email
-            usuario.img = googleUser.img
-            usuario.google = true
-            usuario.password = ':)'
+        } else { //user no existe
+            let user = new User();
+            user.nombre = googleUser.nombre
+            user.email = googleUser.email
+            user.img = googleUser.img
+            user.google = true
+            user.password = ':)'
 
-            usuario.save((err, usuarioDB) => {
+            user.save((err, userDB) => {
                 if (err) {
                     return res.status(500).json({
                         ok: false,
@@ -123,11 +142,11 @@ app.post('/google', async(req, res) => {
                 }
 
                 let token = jwt.sign({
-                    usuario: usuarioDB
+                    user: userDB
                 }, process.env.SEED, { expiresIn: process.env.EXPIRATION_TOKEN })
                 return res.json({
                     ok: true,
-                    usuario: usuarioDB,
+                    user: userDB,
                     token
                 })
             })
