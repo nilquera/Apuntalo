@@ -12,6 +12,8 @@ import { RegistroComponent } from './registro/registro.component';
 import { CarrerasComponent } from './carreras/carreras.component';
 import { AsignaturasComponent } from './asignaturas/asignaturas.component';
 
+import { LoginService } from './login.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,9 +27,10 @@ import { AsignaturasComponent } from './asignaturas/asignaturas.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [LoginService, HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
