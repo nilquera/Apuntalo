@@ -10,7 +10,7 @@ const User = require('../models/user')
 const app = express()
 
 // login with username or email
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     let body = req.body
 
     if (!body.password){
