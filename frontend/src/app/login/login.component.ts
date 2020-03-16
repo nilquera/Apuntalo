@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
-import { LoginService } from './login.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginForm;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private login: LoginService) {
     this.loginForm = this.formBuilder.group({
       email: '',
       pwd: ''
@@ -23,8 +23,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(loginData){
-      //this.LoginService.doLogin();
-      console.warn('Prova login: ', loginData);
+    console.warn('Prova login: ', loginData);
+    this.login.doLogin(loginData.email, loginData.pwd);
   }
 
 }
