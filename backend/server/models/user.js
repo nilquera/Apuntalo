@@ -51,7 +51,11 @@ let userSchema = new Schema({
     google: {
         type: Boolean,
         default: false
-    }
+    },
+    posts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Post' 
+    }]
 })
 
 userSchema.methods.toJSON = function(){

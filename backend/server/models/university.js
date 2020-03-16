@@ -11,11 +11,10 @@ let universitySchema = new Schema({
     city: {
         type: String
     },
-    degrees: { //a implementar
-        type: String,
-        required: true
-        //default empty array?
-    }
+    degrees: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Degree'
+    }]
 })
 
 universitySchema.plugin( uniqueValidator, { message: '{PATH} must be unique' })

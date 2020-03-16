@@ -13,11 +13,10 @@ let subjectSchema = new Schema({
         ref: 'Degree',
         required: true
     },
-    posts: {
-        type: String,
-        required: true
-        //default empty array?
-    }
+    posts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Post'
+    }]
 })
 
 subjectSchema.plugin( uniqueValidator, { message: '{PATH} must be unique' })
