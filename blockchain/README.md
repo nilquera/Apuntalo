@@ -9,7 +9,7 @@
 
 
 <!-- Esquema -->
-##ESQUEMA DE TRABAJO CON TRUFFLESUITE
+## ESQUEMA DE TRABAJO CON TRUFFLESUITE
 
 **Este archivo todavía no está completo y puede que los conceptos explicados no sean del todo correctos.**
 
@@ -18,7 +18,7 @@ Trufflesuite trabaja con dos plataformas básicas:
 * Truffle: El "backend" de la blockchain (en nuestro caso la blockchain que usaremos será Ethereum). Desde Truffle se administrarán los "smart contracts" para mandar peticiones a la blockchain y administrar los accesos y funciones.
 * Ganache: La "base de datos" de la blockchain.
 
-###Truffle
+### Truffle
 
 Truffle será la plataforma desde la que se controlarán todos los accesos a la Base de Datos. 
 
@@ -32,7 +32,7 @@ Truffle cuenta con 2 partes claramente diferenciadas:
 
 **Lenguaje:** JavaScript
 
-###Ganache
+### Ganache
 
 Ganache es la propia blockchain virtual sobre la que ejecutaremos las funciones implementadas en Truffle. Es la DataBase.
 Ganache usa la blockchain de [Ethereum](https://ethereum.org/). Su funcionamiento: 10 direcciones Ethereum iniciales recargadas con 100 Ethereum (simulado) cada una, permitiendo el testeo.
@@ -42,7 +42,7 @@ En esta base de datos no existe el "mining" por defecto, por lo que immediatamen
 Se podrá testear la Base de Datos usando los ficheros de la carpeta **test**. Se ejecutarán las simulaciones y una vez terminadas, se podrá volver a la situación inicial de la base de datos para permitir posteriores testeos.
 
 <!-- Estructura -->
-##ESTRUCTURA DE LOS FICHEROS
+## ESTRUCTURA DE LOS FICHEROS
 
 * Contracts: Ficheros .sol (Solidity) implementación de las funciones para interactuar con la base de datos.
 * Migrations: Ficheros .js con el deploy de las funciones de Contracts.
