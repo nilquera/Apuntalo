@@ -1,21 +1,21 @@
 <div class="registro">
-  <form action="/">
+<form [formGroup]="registroForm" (ngSubmit)="onSubmit(registroForm.value)">
  <div class="form-group">
    <label for="email">Nombre de usuario:</label>
-   <input type="email" class="form-control" placeholder="Escribe el nombre de usuario" id="user">
+   <input type="email" class="form-control" placeholder="Escribe el nombre de usuario" formControlName="user" id="user">
  </div>
  <div class="form-group">
    <label for="email">Correo electrónico:</label>
-   <input type="email" class="form-control" placeholder="Escribe tu correo electrónico" id="email">
+   <input type="email" class="form-control" placeholder="Escribe tu correo electrónico" formControlName="email" id="email">
  </div>
  <div class="form-group">
    <label for="pwd">Contraseña:</label>
-   <input type="password" class="form-control" placeholder="Escribe tu contraseña" id="pwd">
+   <input type="password" class="form-control" placeholder="Escribe tu contraseña" formControlName="pwd" id="pwd">
  </div>
  <div class="form-group">
    <label for="pwd">Repite la contraseña:</label>
-   <input type="password" class="form-control" placeholder="Vuelve a escribir tu contraseña" id="repwd">
+   <input type="password" class="form-control" placeholder="Vuelve a escribir tu contraseña" formControlName="repwd" id="repwd">
  </div>
- <button type="submit" class="btn btn-primary">Registro</button>
+  <button type="submit" class="btn btn-primary">Registro</button>
 </form>
 </div>
