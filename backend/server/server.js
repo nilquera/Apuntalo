@@ -9,7 +9,7 @@ const app = express()
 
 app.use(bodyParser.urlencoded({ extended: false}))
 app.use(bodyParser.json())
-app.use(require('./routes/index'))
+app.use('/api', require('./routes/index'))
 
 // Habilitar la carpeta public
 // app.use(express.static(path.resolve(__dirname, '../public')))
