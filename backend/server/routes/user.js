@@ -10,22 +10,22 @@ app.get('/user', verifyToken, (req, res) => {
     let from = req.query.from || 0
     from = Number(from)
     if (isNaN(from)) {
-            return res.status(400).json({
-                ok: false,
-                err: {
-                    message: "<from> has to be a number"
-                }
-            })
+        return res.status(400).json({
+            ok: false,
+            err: {
+                message: "<from> has to be a number"
+            }
+        })
     }
     let limit = req.query.limit || 5
     limit = Number(limit)
     if (isNaN(limit)) {
-            return res.status(400).json({
-                ok: false,
-                err: {
-                    message: "<limit> has to be a number"
-                }
-            })
+        return res.status(400).json({
+            ok: false,
+            err: {
+                message: "<limit> has to be a number"
+            }
+        })
     }
 
     User.find({state: true}, 'name email role state google img')

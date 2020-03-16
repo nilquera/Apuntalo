@@ -81,7 +81,11 @@ app.post('/universities/:id/degrees', [verifyToken, verifyAdmin], (req, res) => 
     let newDegree = {
         name: body.name
     }
-    University.findByIdAndUpdate(id, {$push: {degrees: newDegree}}, {new: true, runValidators: true, context: 'query'}, (err, universityDB) =>{
+    University.findByIdAndUpdate(
+        id,
+        {$push: {degrees: newDegree}},
+        {new: true, runValidators: true, context: 'query'},
+        (err, universityDB) =>{
         if (err) {
             return res.status(500).json({
                 ok: false,
@@ -114,53 +118,24 @@ app.post('/universities/:uid/degrees/:did/subjects', [verifyToken, verifyAdmin],
         name: body.name
     }
 
-    University.findById(uid, (err, universityDB) => {
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                err
+    University.update(
+        {"_id": uid, "degrees._id": did},
+        {"$push": {"degrees.$.subjects": newSubject}},
+        {new: true, runValidators: true, context: 'query'},
+        (err, universityDB) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    err
+                })
+            }
+            console.log(universityDB); // Error
+            res.json({
+                ok: true,
+                message: "[FALTA IMPLENTAR-HO BÉ PERQUÈ universityDB SIGUI UNA UNI]",
+                universityDB
             })
-        }
-
-        if (!universityDB){
-            return res.status(400).json({
-                ok: false,
-                err: {
-                    message: `University with id ${id} not found`
-                }
-            })
-        }
-
-        if (universityDB.subje)
-
-        res.json({
-            ok: true,
-            universityDB
         })
-    })
-
-    University.update({"_id": uid, "degrees.name": did}, {$push: {subjects: newSubject}}, {new: true, runValidators: true, context: 'query'}, (err, universityDB) =>{
-        if (err) {
-            return res.status(500).json({
-                ok: false,
-                err
-            })
-        }
-
-        if (!universityDB){
-            return res.status(400).json({
-                ok: false,
-                err: {
-                    message: `University with id ${id} not found`
-                }
-            })
-        }
-
-        res.json({
-            ok: true,
-            university: universityDB
-        })
-    })
 })
 
 

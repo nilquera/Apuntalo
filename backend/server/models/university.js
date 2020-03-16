@@ -17,6 +17,7 @@ let universitySchema = new Schema({
     degrees: [{
         name: {
             type: String,
+            unique: true,
             required: true
         },
         subjects: [{
