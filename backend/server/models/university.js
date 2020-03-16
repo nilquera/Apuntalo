@@ -6,14 +6,28 @@ let Schema = mongoose.Schema
 let universitySchema = new Schema({
     name: {
         type: String,
+        unique: true,
         required: true
     },
-    city: {
-        type: String
+    city: String,
+    state: {
+        type: Boolean,
+        default: true
     },
     degrees: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Degree'
+        name: {
+            type: String,
+            required: true
+        },
+        subjects: [{
+            name: {
+                type: String,
+                required: true
+            },
+            posts: [{
+                type: String //a implementar
+            }]
+        }]
     }]
 })
 
