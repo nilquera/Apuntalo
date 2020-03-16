@@ -1,3 +1,14 @@
+<!-- TABLE OF CONTENTS -->
+## Índice
+
+* [Esquema](#esquema)
+    * [Truffle](#Truffle)
+    * [Ganache] (#Ganache)
+* [Estructura] (#Estructura)
+
+
+
+<!-- Esquema -->
 ##ESQUEMA DE TRABAJO CON TRUFFLESUITE
 
 **Este archivo todavía no está completo y puede que los conceptos explicados no sean del todo correctos.**
@@ -30,7 +41,7 @@ En esta base de datos no existe el "mining" por defecto, por lo que immediatamen
 
 Se podrá testear la Base de Datos usando los ficheros de la carpeta **test**. Se ejecutarán las simulaciones y una vez terminadas, se podrá volver a la situación inicial de la base de datos para permitir posteriores testeos.
 
-
+<!-- Estructura -->
 ##ESTRUCTURA DE LOS FICHEROS
 
 * Contracts: Ficheros .sol (Solidity) implementación de las funciones para interactuar con la base de datos.
