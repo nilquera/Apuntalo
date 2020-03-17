@@ -2,9 +2,11 @@
 ## Índice
 
 * [Esquema](#esquema)
-    * [Truffle](#Truffle)
-    * [Ganache] (#Ganache)
-* [Estructura] (#Estructura)
+    * [Truffle](#truffle)
+        * [Usos básicos de Truffle](#usos-basicos-de-truffle)
+    * [Ganache] (#ganache)
+        * [Usos básicos de Ganache](#usos-basicos-de-ganache)
+* [Estructura] (#estructura)
 
 
 
@@ -32,6 +34,35 @@ Truffle cuenta con 2 partes claramente diferenciadas:
 
 **Lenguaje:** JavaScript
 
+
+Para la instalación de Truffle
+```sh
+npm install -g truffle
+```
+Para iniciar Truffle con contratos simples por defecto:
+```sh
+truffle init
+```
+
+Para iniciar un proyecto con una moneda básica:
+```sh
+truffle unbox metacoin
+```
+
+#### Usos básicos de Truffle
+
+Hacer testeo (compilar contratos & run test). Básicamente debugar y ver que todo está correcto.
+```sh
+truffle test
+```
+**Una vez hecho el deploy de Ganache (está escuchando por un puerto)** podemos enviar lanzar las funciones para que interactúen con la base de datos de Ganache.
+```sh
+truffle migrate
+```
+
+
+
+
 ### Ganache
 
 Ganache es la propia blockchain virtual sobre la que ejecutaremos las funciones implementadas en Truffle. Es la DataBase.
@@ -41,9 +72,29 @@ En esta base de datos no existe el "mining" por defecto, por lo que immediatamen
 
 Se podrá testear la Base de Datos usando los ficheros de la carpeta **test**. Se ejecutarán las simulaciones y una vez terminadas, se podrá volver a la situación inicial de la base de datos para permitir posteriores testeos.
 
+Para la instalación de Ganache
+```sh
+npm install -g ethereumjs-testrpc
+```
+
+Para activar el servidor Ganache escuchando un puerto:
+```sh
+testrpc
+```
+
+**Nota** TestRPC es el "antiguo" Ganache. El comando automáticamente busca el nuevo nombre de Ganache y lo instala.
+
+#### Usos básicos de Ganache
+
+Hacer deploy de Ganache y escuchar en un puerto.
+```sh
+testrpc
+```
+
 <!-- Estructura -->
 ## ESTRUCTURA DE LOS FICHEROS
 
+* Build: Ficheros de compilación generados automáticamente.
 * Contracts: Ficheros .sol (Solidity) implementación de las funciones para interactuar con la base de datos.
 * Migrations: Ficheros .js con el deploy de las funciones de Contracts.
 * Test: "Juegos de pruebas" para acceder a la base de datos e interactuar con ella.
