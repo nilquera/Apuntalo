@@ -1,12 +1,12 @@
 <!-- TABLE OF CONTENTS -->
 ## Índice
 
-* [Esquema](#esquema)
+* [Esquema de trabajo](#esquema-de-trabajo-con-trufflesuite)
     * [Truffle](#truffle)
         * [Usos básicos de Truffle](#usos-basicos-de-truffle)
-    * [Ganache] (#ganache)
+    * [Ganache](#ganache)
         * [Usos básicos de Ganache](#usos-basicos-de-ganache)
-* [Estructura] (#estructura)
+* [Estructura de los ficheros](#estructura-de-los-ficheros)
 
 
 
@@ -97,7 +97,7 @@ testrpc
 * Build: Ficheros de compilación generados automáticamente.
 * Contracts: Ficheros .sol (Solidity) implementación de las funciones para interactuar con la base de datos.
 * Migrations: Ficheros .js con el deploy de las funciones de Contracts.
-* Test: "Juegos de pruebas" para acceder a la base de datos e interactuar con ella.
+* Test: "Juegos de pruebas" para comprobar que las funciones se ejecutan correctamente.
     * truffle-config.js: Archivo de configuración de Truffle.
 
 

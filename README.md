@@ -78,6 +78,17 @@ git clone https://github.com/your_username_/Project-Name.git
 ```sh
 npm install
 ```
+4. Install node, express, angular
+```sh
+sudo npm install -g angular-cli
+sudo npm install -g express --save
+sudo apt install nodejs
+```
+5. Install truffle & ganache (blockchain)
+```sh
+sudo npm install -g truffle
+sudo npm install -g ethereumjs-testrpc
+```
 4. Enter your API in `config.js`
 ```JS
 const API_KEY = 'ENTER YOUR API';
