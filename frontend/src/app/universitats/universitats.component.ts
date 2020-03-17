@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Universitat } from '../universitat';
+import {UniversitatService} from '../universitat.service';
 import { UNIVERSITATS } from '../universitats_list';
 
 @Component({
@@ -10,9 +11,11 @@ import { UNIVERSITATS } from '../universitats_list';
 })
 export class UniversitatsComponent implements OnInit {
 
-  universitats = UNIVERSITATS;
+  universitats;
   selectedUniversitat: Universitat;
-  constructor() { }
+  constructor(private universitatS: UniversitatService) {
+    this.universitatS.getUnis().subscribe(data => this.universitats = data.universities);
+  }
 
   ngOnInit(): void {
   }

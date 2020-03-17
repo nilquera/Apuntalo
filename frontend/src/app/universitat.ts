@@ -2,7 +2,6 @@ import { Carrera } from './carrera';
 
 
 export interface Universitat {
-  id: number;
+  id: string;
   name: string;
-  carreras: Carrera[];
 }
