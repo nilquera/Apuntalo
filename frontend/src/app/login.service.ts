@@ -8,9 +8,6 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   doLogin(username: string, password: string){
-      return this.http.post<any>('api/login',{username, password})
-      .subscribe(data => {
-        console.log(data, "resposta")
-      });
+      return this.http.post<any>('api/login',{username, password});
     }
 }

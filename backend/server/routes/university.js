@@ -6,7 +6,7 @@ let app = express()
 let University = require('../models/university')
 
 // Returns all Universities
-app.get('/universities', verifyToken, (req, res) => {
+app.get('/universities', (req, res) => {
     University.find({state: true})
         .sort('name')
         .exec((err, universities) => {

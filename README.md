@@ -36,9 +36,11 @@
 <!-- Sobre Apuntalo -->
 ## Sobre Apuntalo
 
-[![Apuntalo Screen Shot][product-screenshot]](https://apuntalo.com)
+<!--[![Apuntalo Screen Shot][product-screenshot]](https://apuntalo.com)-->
 
 Apuntalo es una webapp para editar documentos relacionados con la universidad de forma colaborativa y en tiempo real. El portal sigue un formato tipo foro, donde los usuarios registrados pueden crear posts en el subforo de su universidad y asignatura. Al crear un post, el usuario decide la visibilidad y la libertad de modificación de los demás usuarios. Más adelante podrá cambiar las propiedades concediendo privilegios de modificación a otras personas de confianza. Con tal de que los usuarios creadores de posts se vean recompensados por sus esfuerzos, existe también la opción de cobrar por descargar o colaborar en un post.
+
+![Diagrama Apuntalo][diagrama]
 
 ### Construido con
 * [Ethereum](https://ethereum.org/)
@@ -114,3 +116,4 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 [license-shield]: https://img.shields.io/github/license/nilquera/apuntalo.svg?style=flat-square
 [license-url]: https://github.com/nilquera/Apuntalo/blob/master/LICENSE.txt
 [product-screenshot]: img/screenshot.png
+[diagrama]: img/diagrama.png
