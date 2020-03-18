@@ -141,7 +141,7 @@ app.post('/universities/:uid/degrees/:did/subjects', [verifyToken, verifyAdmin],
 app.put('/universities/:id', [verifyToken, verifyAdmin], (req, res) => {
     let id = req.params.id
     let body = _.pick(req.body, ['name', 'city', 'state']);
-
+    console.log(body);
     University.findByIdAndUpdate(id, body, {new: true, runValidators: true,  context: 'query'}, (err, universityDB) => {
         if (err) {
             return res.status(500).json({
