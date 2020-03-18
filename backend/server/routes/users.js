@@ -6,7 +6,7 @@ const { verifyToken, verifyAdmin } = require('../middlewares/authentication')
 const app = express()
 
 // Returns DB users with state: true [needs valid token]
-app.get('/user', verifyToken, (req, res) => {
+app.get('/users', verifyToken, (req, res) => {
     let from = req.query.from || 0
     from = Number(from)
     if (isNaN(from)) {
@@ -50,7 +50,7 @@ app.get('/user', verifyToken, (req, res) => {
 })
 
 // Creates DB user with values in body [needs valid token with admin privilege]
-app.post('/user', [verifyToken, verifyAdmin], (req, res) => {
+app.post('/users', [verifyToken, verifyAdmin], (req, res) => {
     let body = req.body
 
     let user = new User({
@@ -80,7 +80,7 @@ app.post('/user', [verifyToken, verifyAdmin], (req, res) => {
 })
 
 // Modify user by id [needs valid token with admin privilege]
-app.put('/user/:id', [verifyToken, verifyAdmin], (req, res) => {
+app.put('/users/:id', [verifyToken, verifyAdmin], (req, res) => {
     let id = req.params.id
     // deletes password field or any other --> avoids password update
     let body = _.pick(req.body, ['username', 'email', 'role', 'state', 'name', 'university', 'degree', 'img']);
@@ -110,7 +110,7 @@ app.put('/user/:id', [verifyToken, verifyAdmin], (req, res) => {
 })
 
 // Delete user by id [needs valid token with admin privilege]
-app.delete('/user/:id', [verifyToken, verifyAdmin], (req, res) => {
+app.delete('/users/:id', [verifyToken, verifyAdmin], (req, res) => {
     let id = req.params.id
 
     User.findByIdAndUpdate(id, {state: false}, {new: true}, (err, userDB) => {
