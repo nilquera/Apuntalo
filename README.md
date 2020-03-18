@@ -53,6 +53,9 @@ Apuntalo es una webapp para editar documentos relacionados con la universidad de
 El backend consiste en una REST API hecha con nodejs. Consulta el siguiente enlace para ver los endpoints disponibles.
 [Documentacion API](https://documenter.getpostman.com/view/4392922/SzS2xoCu?version=latest#1c6af55e-3e91-42e8-90af-9f28e0a32e72)
 
+![Diagrama de clases Apuntalo][clases]
+
+
 <!-- Primeros Pasos -->
 ## Primeros pasos
 
@@ -117,3 +120,4 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 [license-url]: https://github.com/nilquera/Apuntalo/blob/master/LICENSE.txt
 [product-screenshot]: img/screenshot.png
 [diagrama]: img/diagrama.png
+[clases]: img/clases.png
