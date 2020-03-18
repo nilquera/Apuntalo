@@ -12,8 +12,7 @@ app.use(bodyParser.json())
 app.use('/api', require('./routes/index'))
 
 // Habilitar la carpeta public
-// app.use(express.static(path.resolve(__dirname, '../public')))
-// app.use(express.static(path.resolve(__dirname, '../public')));
+app.use(express.static(path.resolve(__dirname, '../../frontend/dist/angularweb')))
 
 mongoose
     .connect(process.env.URLDB, {

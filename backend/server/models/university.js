@@ -27,8 +27,16 @@ let universitySchema = new Schema({
             },
             posts: [{
                 type: String //a implementar
-            }]
-        }]
+            }],
+            state: {
+                type: Boolean,
+                default: true
+            }
+        }],
+        state: {
+            type: Boolean,
+            default: true
+        }
     }]
 })
 

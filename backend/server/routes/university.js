@@ -5,7 +5,7 @@ let app = express()
 
 let University = require('../models/university')
 
-// Returns all Universities
+// Get all Universities
 app.get('/universities', (req, res) => {
     University.find({state: true})
         .sort('name')
@@ -24,8 +24,8 @@ app.get('/universities', (req, res) => {
         })
 })
 
-// Returns university by id
-app.get('/universities/:id', verifyToken, (req, res) => {
+// Get a University by id
+app.get('/universities/:id', (req, res) => {
     let id = req.params.id
     University.findById(id, (err, universityDB) => {
         if (err) {
@@ -51,7 +51,7 @@ app.get('/universities/:id', verifyToken, (req, res) => {
     })
 })
 
-// Creates a new University
+// Create new University
 app.post('/universities', [verifyToken, verifyAdmin], (req, res) => {
     let body = req.body
     let university = new University({
@@ -74,7 +74,7 @@ app.post('/universities', [verifyToken, verifyAdmin], (req, res) => {
     })
 })
 
-// Create new degree in a university
+// Create new degree in a University
 app.post('/universities/:id/degrees', [verifyToken, verifyAdmin], (req, res) => {
     let body = req.body
     let id = req.params.id
@@ -129,7 +129,6 @@ app.post('/universities/:uid/degrees/:did/subjects', [verifyToken, verifyAdmin],
                     err
                 })
             }
-            console.log(universityDB); // Error
             res.json({
                 ok: true,
                 message: "[FALTA IMPLENTAR-HO BÉ PERQUÈ universityDB SIGUI UNA UNI]",
@@ -138,8 +137,7 @@ app.post('/universities/:uid/degrees/:did/subjects', [verifyToken, verifyAdmin],
         })
 })
 
-
-// Updates University values
+// Update University values
 app.put('/universities/:id', [verifyToken, verifyAdmin], (req, res) => {
     let id = req.params.id
     let body = _.pick(req.body, ['name', 'city', 'state']);
@@ -168,7 +166,7 @@ app.put('/universities/:id', [verifyToken, verifyAdmin], (req, res) => {
     })
 })
 
-// Deletes a University
+// Delete a University
 app.delete('/universities/:id', [verifyToken, verifyAdmin], (req, res) => {
     let id = req.params.id
 
@@ -196,5 +194,56 @@ app.delete('/universities/:id', [verifyToken, verifyAdmin], (req, res) => {
         })
     })
 })
+
+// Delete a degree
+app.delete('/universities/:uid/degrees/:did', [verifyToken, verifyAdmin], (req, res) => {
+    let uid = req.params.uid
+    let did = req.params.did
+
+    University.update(
+        {"_id": uid, "degrees._id": did},
+        {"degrees.$.state": false},
+        {new: true},
+        (err, universityDB) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    err
+                })
+            }
+            res.json({
+                ok: true,
+                message: "[FALTA IMPLENTAR-HO BÉ PERQUÈ universityDB SIGUI UNA UNI]",
+                universityDB
+            })
+        }
+    )
+})
+
+// Delete a subject // TODO
+// app.delete('/universities/:uid/degrees/:did/subject/:sid', [verifyToken, verifyAdmin], (req, res) => {
+//     let uid = req.params.uid
+//     let did = req.params.did
+//
+//     University.update(
+//         {"_id": uid, "degrees._id": did},
+//         {"degrees.$.state": false},
+//         {new: true},
+//         (err, universityDB) => {
+//             if (err) {
+//                 return res.status(500).json({
+//                     ok: false,
+//                     err
+//                 })
+//             }
+//             res.json({
+//                 ok: true,
+//                 message: "[FALTA IMPLENTAR-HO BÉ PERQUÈ universityDB SIGUI UNA UNI]",
+//                 universityDB
+//             })
+//         }
+//     )
+// })
+//
 
 module.exports = app
