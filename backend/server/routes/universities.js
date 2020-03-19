@@ -74,7 +74,7 @@ app.post('/universities', [verifyToken, verifyAdmin], (req, res) => {
     })
 })
 
-// Create new degree in a University
+// Create new DEGREE in a University
 app.post('/universities/:id/degrees', [verifyToken, verifyAdmin], (req, res) => {
     let body = req.body
     let id = req.params.id
@@ -109,7 +109,7 @@ app.post('/universities/:id/degrees', [verifyToken, verifyAdmin], (req, res) => 
     })
 })
 
-// Create new subject in a degree
+// Create new SUBJECT in a degree
 app.post('/universities/:uid/degrees/:did/subjects', [verifyToken, verifyAdmin], (req, res) => {
     let body = req.body
     let uid = req.params.uid
@@ -141,7 +141,7 @@ app.post('/universities/:uid/degrees/:did/subjects', [verifyToken, verifyAdmin],
 app.put('/universities/:id', [verifyToken, verifyAdmin], (req, res) => {
     let id = req.params.id
     let body = _.pick(req.body, ['name', 'city', 'state']);
-
+    console.log(body);
     University.findByIdAndUpdate(id, body, {new: true, runValidators: true,  context: 'query'}, (err, universityDB) => {
         if (err) {
             return res.status(500).json({
@@ -195,7 +195,7 @@ app.delete('/universities/:id', [verifyToken, verifyAdmin], (req, res) => {
     })
 })
 
-// Delete a degree
+// Delete a DEGREE
 app.delete('/universities/:uid/degrees/:did', [verifyToken, verifyAdmin], (req, res) => {
     let uid = req.params.uid
     let did = req.params.did
@@ -220,7 +220,7 @@ app.delete('/universities/:uid/degrees/:did', [verifyToken, verifyAdmin], (req, 
     )
 })
 
-// Delete a subject // TODO
+// Delete a SUBJECT // TODO
 // app.delete('/universities/:uid/degrees/:did/subject/:sid', [verifyToken, verifyAdmin], (req, res) => {
 //     let uid = req.params.uid
 //     let did = req.params.did
