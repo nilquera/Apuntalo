@@ -14,6 +14,7 @@ import { LoginService } from './login.service';
 import { UniversitatService } from './universitat.service';
 import { UnidetailService } from './unidetail.service';
 import { UnidetailComponent } from './unidetail/unidetail.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UnidetailComponent } from './unidetail/unidetail.component';
     LoginComponent,
     NosotrosComponent,
     RegistroComponent,
-    UnidetailComponent
+    UnidetailComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

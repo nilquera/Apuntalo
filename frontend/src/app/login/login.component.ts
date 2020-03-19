@@ -27,9 +27,10 @@ export class LoginComponent implements OnInit {
     console.warn('Prova login: ', loginData);
     this.login.doLogin(loginData.email, loginData.pwd).subscribe(data => {
         if(data.ok) {
-          this.router.navigate([''])
+          localStorage.setItem('mytoken', data.token);
+          this.router.navigate(['']);
         }else{
-          window.alert("Fail")
+          window.alert("Fail");
         }
       }
     );
