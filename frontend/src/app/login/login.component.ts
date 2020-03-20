@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.login.doLogin(loginData.email, loginData.pwd).subscribe(data => {
         if(data.ok) {
           localStorage.setItem('mytoken', data.token);
-          this.router.navigate(['']);
+          this.router.navigate(['user']);
         }else{
           window.alert("Fail");
         }

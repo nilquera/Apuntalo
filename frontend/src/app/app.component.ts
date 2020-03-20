@@ -10,5 +10,5 @@ import { ITEMINIT } from './menu_items.list';
 })
 export class AppComponent {
   title = 'Apúntalo';
-  items: MenuItem = ITEMINIT
+  public items: MenuItem[] = ITEMINIT;
 }
