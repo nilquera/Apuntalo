@@ -7,10 +7,9 @@
       <img src="assets/logo1.png" width="75%" height="75%">
   </div>
   <div class="menu">
-    <a routerLink="/" class="active">Inicio</a>
-    <a routerLink="/login">Login</a>
-    <a routerLink="/registro">Registro</a>
-    <a routerLink="/nosotros">Sobre nosotros</a>
+    <li *ngFor="let item of items">
+    <a routerLink="{{item.url}}">{{item.name}}</a>
+    </li>
   </div>
 </div>
 

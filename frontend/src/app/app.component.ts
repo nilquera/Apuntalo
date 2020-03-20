@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { MenuItem } from './menu_items';
+
+import { ITEMINIT } from './menu_items.list';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Apúntalo';
+  items: MenuItem = ITEMINIT
 }
