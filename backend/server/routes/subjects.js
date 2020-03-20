@@ -4,16 +4,15 @@ let { verifyToken, verifyAdmin } = require('../middlewares/authentication')
 let app = express()
 
 let ObjectId = require('mongoose').Types.ObjectId
-let Post = require('../models/post')
 let Subject = require('../models/subject')
-let User = require('../models/user')
+let Degree = require('../models/degree')
 
-// Get all Posts
-app.get('/posts', (req, res) => {
-    Post.find({state: true})
-        .sort('date')
-        .populate('creator', 'name email')
-        .exec((err, posts) => {
+// Get all Subjects
+app.get('/subjects', (req, res) => {
+    Subject.find({state: true})
+        .populate('posts')
+        .sort('name')
+        .exec((err, subjects) => {
             if (err){
                 return res.status(500).json({
                     ok: false,
@@ -23,45 +22,50 @@ app.get('/posts', (req, res) => {
 
             res.json({
                 ok: true,
-                posts
+                subjects
             })
         })
 })
 
-// Create new Post
-app.post('/posts', [verifyToken], (req, res) => {
-    let body = req.body
+// Create new Subject
+app.post('/subjects', [verifyToken, verifyAdmin], (req, res) => {
 
-    if (!ObjectId.isValid(body.subjectId)){
+    let body = req.body
+    if (!body.name || !body.degreeId) {
         return res.status(400).json({
             ok: false,
-            message: "subjectId must be a valid id"
+            message: "name and degreeId are required"
+        })
+    }
+    if (!ObjectId.isValid(body.degreeId)){
+        return res.status(400).json({
+            ok: false,
+            message: "degreeId must be a valid id"
         })
     }
 
-    Subject.findById(body.subjectId, (err, subjectDB) => {
+    Degree.findById(body.degreeId, (err, degreeDB) => {
         if (err) {
             return res.status(500).json({
                 ok: false,
                 err
             })
         }
-        if (!subjectDB){
+        if (!degreeDB){
             return res.status(400).json({
                 ok: false,
-                message: "subjectId must be an existing id"
+                message: "degreeId must be an existing id"
             })
         }
 
-        let newPost = new Post({
-            title: body.title,
-            date: body.date,
-            body: body.body,
-            subject: body.subjectId,
-            creator: req.user._id
+        let newSubject = new Subject({
+            index: {
+                name: body.name,
+                degree: body.degreeId
+            }
         })
 
-        newPost.save((err, postDB) => {
+        newSubject.save((err, subjectDB) => {
             if (err) {
                 return res.status(500).json({
                     ok: false,
@@ -69,39 +73,37 @@ app.post('/posts', [verifyToken], (req, res) => {
                 })
             }
 
-            Subject.findByIdAndUpdate(body.subjectId, {$push: {posts: newPost._id}}).exec()
-
-            User.findByIdAndUpdate(req.user._id, {$push: {posts: newPost._id}}).exec()
+            Degree.findByIdAndUpdate(body.degreeId, {$push: {subjects: newSubject._id}}).exec()
 
             res.json({
                 ok: true,
-                post: postDB
+                subject: subjectDB
             })
         })
-
-
     })
 
 })
 
-// Update Post values
-app.put('/posts/:id', [verifyToken], (req, res) => {
+// Update Subject values
+app.put('/subjects/:id', [verifyToken, verifyAdmin], (req, res) => {
     let id = req.params.id
-    let body = _.pick(req.body, ['title', 'votes', 'favs']);
-    if (body.votes){
-        body["meta.votes"] = body.votes
-        delete body.votes
-    }
-    if (body.favs){
-        body["meta.favs"] = body.favs
-        delete body.favs
+    let body = _.pick(req.body, ['name']);
+
+    if (!body.name) {
+        return res.status(400).json({
+            ok: false,
+            message: "You must provide a new name"
+        })
     }
 
-    Post.findByIdAndUpdate(
+    body["index.name"] = body.name
+    delete body.name
+
+    Subject.findByIdAndUpdate(
         id,
         body,
         {new: true, runValidators: true,  context: 'query'},
-        (err, postDB) => {
+        (err, subjectDB) => {
             if (err) {
                 return res.status(500).json({
                     ok: false,
@@ -109,28 +111,28 @@ app.put('/posts/:id', [verifyToken], (req, res) => {
                 })
             }
 
-            if (!postDB){
+            if (!subjectDB){
                 return res.status(400).json({
                     ok: false,
                     err: {
-                        message: `Post with id ${id} not found`
+                        message: `Subject with id ${id} not found`
                     }
                 })
             }
 
             res.json({
                 ok: true,
-                post: postDB
+                subject: subjectDB
             })
         }
     )
 })
 
-// Delete Post
-app.delete('/posts/:id', [verifyToken], (req, res) => {
+// Delete Subject
+app.delete('/subjects/:id', [verifyToken, verifyAdmin], (req, res) => {
     let id = req.params.id
 
-    Post.findByIdAndUpdate(id, {state: false}, {new: true}, (err, postDB) => {
+    Subject.findByIdAndUpdate(id, {state: false}, {new: true}, (err, subjectDB) => {
         if (err) {
             return res.status(500).json({
                 ok: false,
@@ -138,19 +140,19 @@ app.delete('/posts/:id', [verifyToken], (req, res) => {
             })
         }
 
-        if (!postDB){
+        if (!subjectDB){
             return res.status(400).json({
                 ok: false,
                 err: {
-                    message: `Post with id ${id} not found`
+                    message: `Subject with id ${id} not found`
                 }
             })
         }
 
         res.json({
             ok: true,
-            message: `Post with id ${id} deleted`,
-            post: postDB
+            message: `Subject with id ${id} deleted`,
+            subject: subjectDB
         })
     })
 })

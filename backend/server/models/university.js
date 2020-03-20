@@ -15,28 +15,8 @@ let universitySchema = new Schema({
         default: true
     },
     degrees: [{
-        name: {
-            type: String,
-            unique: true,
-            required: true
-        },
-        subjects: [{
-            name: {
-                type: String,
-                required: true
-            },
-            posts: [{
-                type: String //a implementar
-            }],
-            state: {
-                type: Boolean,
-                default: true
-            }
-        }],
-        state: {
-            type: Boolean,
-            default: true
-        }
+        type: Schema.Types.ObjectId,
+        ref: 'Degree'
     }]
 })
 

@@ -6,7 +6,6 @@ let Schema = mongoose.Schema
 let postSchema = new Schema({
     title: {
         type: String,
-        unique: true,
         required: true
     },
     date: {
@@ -26,11 +25,11 @@ let postSchema = new Schema({
         votes: {type: Number, default: 0},
         favs: {type: Number, default: 0}
     },
-    // subject: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Subject',
-    //     required: true
-    // },
+    subject: {
+        type: Schema.Types.ObjectId,
+        ref: 'Subject',
+        required: true
+    },
     state: {
         type: Boolean,
         default: true
