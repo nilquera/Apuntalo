@@ -1,26 +1,53 @@
-# Angularweb
+# Apúntalo (FRONTEND)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.5.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Per provar la web, executar des de terminal `ng serve`, cal estar a la carpeta. La web funciona en l'adreça `http://localhost:4200/`. Si s'efectuen canvis en el codi, no cal reiniciar el servidor, es torna a compilar automàticament.
 
-## Code scaffolding
+És important saber que la web no tindrà un bon funcionament si el servidor de backend no està funcionant, ja que el necessita per poder fer crides a l'API.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Sobre Angular i organització carpetes
+
+El codi font pot ser trobat a la carpeta `src`. La carpeta, contè fitxers inicials i varies carpetes de les quals:
+
+* assets: És la carpeta per posar contingut múltimedia (bàsicament imatges)
+
+* app: És on hi ha bàsicament tot el codi, organitzat per components
+
+### Carpeta app
+  Tots els fitxers de components. Cada carpeta dins d'app és un component i en la carpeta app hi ha el component principal `app.component`. En aquesta carpeta també hi han:
+  * serveis, que son classes per poder fer crides al backend.
+  * interficies, per poder agrupar variables en una sola. (útil pels JSONs).
+  * llistes, per poder provar les interfícies sense necessitat de backend.
+
+### Components
+
+La comanda per crear components és `ng generate component component-name` . Aquesta comanda també es pot fer servir per generar altres coses:  `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+Un component consta de quatre fitxers, dels quals només interessen tres:
+  - component.html: Per definir el component, com el veurà l'usuari.
+  - component.css: Per poder definir el disseny del component.
+  - component.ts: Per definir el comportament del component.
+
+Els components actuals són:
+ * [Login](Apuntalo/tree/master/frontend/src/app/login): Aquest component és el formulari de login. El que fa el login és fer una crida en el [servei de Login](Apuntalo/blob/master/frontend/src/app/login.service.ts), es comprova per l'API si les credencials son correctes i en cas afirmatiu es guarda en el localStorage el token rebut i es redirecciona a l'apartat d'usuari.
+
+ * [Nosotros](Apuntalo/tree/master/frontend/src/app/nosotros): Aquest component és l'apartat de nosaltres. Només és un text.
+
+ * [Registro](Apuntalo/tree/master/frontend/src/app/registro): Aquest component és el formulari de registre. En aquests moments no fa res encara, en un futur s'utilitzarà un servei de registre per poder parlar amb l'API i crear un nou usuari.
+
+ * [Unidetail](Apuntalo/tree/master/frontend/src/app/unidetail): Aquest component és per poder mostrar un llistat de totes les carreres d'una universitat. Utilitza el [servei unidetail](Apuntalo/tree/master/frontend/src/app/unidetail.service.ts) per poder fer una crida a l'api. _De moment no funciona_
+
+ * [Universitats](Apuntalo/tree/master/frontend/src/app/universitats): Aquest component fa un llistat de totes les universitats mitjançant el [servei universitat](Apuntalo/tree/master/frontend/src/app/universitat.service.ts). El llistat es mostra en menú i clicant en una de les universitats porta al component Unidetail.
+
+ * [User](Apuntalo/tree/master/frontend/src/app/user): Aquest component serà el tauler de control de l'usuari, per mostrar la seva informació i per si vol fer algun canvi a les preferències. Encara està en progrès.
+
 
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Further help
 
