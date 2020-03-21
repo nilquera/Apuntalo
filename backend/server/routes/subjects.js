@@ -10,7 +10,7 @@ let Degree = require('../models/degree')
 // Get all Subjects
 app.get('/subjects', (req, res) => {
     Subject.find({state: true})
-        .populate('posts')
+        // .populate('posts')
         .sort('name')
         .exec((err, subjects) => {
             if (err){
@@ -27,6 +27,39 @@ app.get('/subjects', (req, res) => {
         })
 })
 
+// Get Subject by id
+app.get('/subjects/:id', (req, res) => {
+    let id = req.params.id
+    Subject.findById(id)
+    .populate({
+        path: 'posts',
+        select: 'meta state _id title date creator',
+        populate: {
+            path: 'creator',
+            select: '_id username'
+        }
+    })
+    .exec((err, subjectDB) => {
+        if (err){
+            return res.status(500).json({
+                ok: false,
+                err
+            })
+        }
+        if (!subjectDB){
+            return res.status(400).json({
+                ok: false,
+                err: {
+                    message: `Subject with id ${id} not found`
+                }
+            })
+        }
+        res.json({
+            ok: true,
+            subjectDB
+        })
+    })
+})
 // Create new Subject
 app.post('/subjects', [verifyToken, verifyAdmin], (req, res) => {
 

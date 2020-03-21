@@ -28,6 +28,35 @@ app.get('/posts', (req, res) => {
         })
 })
 
+// Get Post by Id
+app.get('/posts/:id', (req, res) => {
+    let id = req.params.id
+    Post.findById(id)
+        .populate('creator', 'username email role img')
+        .exec((err, postDB) => {
+            if (err){
+                return res.status(500).json({
+                    ok: false,
+                    err
+                })
+            }
+
+            if (!postDB){
+                return res.status(400).json({
+                    ok: false,
+                    err: {
+                        message: `Post with id ${id} not found`
+                    }
+                })
+            }
+
+            res.json({
+                ok: true,
+                postDB
+            })
+        })
+})
+
 // Create new Post
 app.post('/posts', [verifyToken], (req, res) => {
     let body = req.body

@@ -9,15 +9,15 @@ let University = require('../models/university')
 app.get('/universities', (req, res) => {
     University.find({state: true})
         .sort('name')
-        .populate({
-            path: 'degrees',
-            populate: {
-                path: 'subjects',
-                populate: {
-                    path: 'posts'
-                }
-            }
-        })
+        // .populate({
+        //     path: 'degrees',
+        //     populate: {
+        //         path: 'subjects',
+        //         populate: {
+        //             path: 'posts'
+        //         }
+        //     }
+        // })
         .exec((err, universities) => {
             if (err){
                 return res.status(500).json({
@@ -39,12 +39,12 @@ app.get('/universities/:id', (req, res) => {
     University.findById(id)
         .populate({
             path: 'degrees',
-            populate: {
-                path: 'subjects',
-                populate: {
-                    path: 'posts'
-                }
-            }
+            // populate: {
+            //     path: 'subjects',
+            //     populate: {
+            //         path: 'posts'
+            //     }
+            // }
         })
         .exec((err, universityDB) => {
             if (err) {

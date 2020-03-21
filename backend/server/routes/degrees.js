@@ -10,7 +10,7 @@ let University = require('../models/university')
 // Get all Degrees
 app.get('/degrees', (req, res) => {
     Degree.find({state: true})
-    .populate('subjects')
+    // .populate('subjects')
     .sort('name')
     .exec((err, degrees) => {
         if (err){
@@ -23,6 +23,33 @@ app.get('/degrees', (req, res) => {
         res.json({
             ok: true,
             degrees
+        })
+    })
+})
+
+// Get Degree by id
+app.get('/degrees/:id', (req, res) => {
+    let id = req.params.id
+    Degree.findById(id)
+    .populate('subjects')
+    .exec((err, degreeDB) => {
+        if (err){
+            return res.status(500).json({
+                ok: false,
+                err
+            })
+        }
+        if (!degreeDB){
+            return res.status(400).json({
+                ok: false,
+                err: {
+                    message: `Degree with id ${id} not found`
+                }
+            })
+        }
+        res.json({
+            ok: true,
+            degreeDB
         })
     })
 })
