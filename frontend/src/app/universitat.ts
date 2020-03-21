@@ -2,6 +2,6 @@ import { Carrera } from './carrera';
 
 
 export interface Universitat {
-  id: string;
+  _id: string;
   name: string;
 }

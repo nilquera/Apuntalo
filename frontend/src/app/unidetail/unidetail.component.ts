@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UnidetailService } from '../unidetail.service';
 import { Carrera } from '../carrera';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-unidetail',
@@ -9,14 +10,16 @@ import { Carrera } from '../carrera';
 })
 export class UnidetailComponent implements OnInit {
 
-  @Input() name: string;
-  carrera: Carrera;
+  id: string;
+  carreres;
 
-  constructor(private unidetailS: UnidetailService) {
-    this.unidetailS.getUniDetail(name).subscribe(data => this.carrera = data.universities.degrees);
+  constructor(private unidetailS: UnidetailService, private route: ActivatedRoute) {
+    this.id = this.route.snapshot.paramMap.get("name");
+    this.unidetailS.getUniDetail(this.id).subscribe(data => this.carreres = data.universityDB.degrees);
   }
 
   ngOnInit(): void {
+
   }
 
 }
