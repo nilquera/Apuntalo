@@ -32,17 +32,17 @@ Un component consta de quatre fitxers, dels quals només interessen tres:
   - component.ts: Per definir el comportament del component.
 
 Els components actuals són:
- * [Login](Apuntalo/tree/master/frontend/src/app/login): Aquest component és el formulari de login. El que fa el login és fer una crida en el [servei de Login](Apuntalo/blob/master/frontend/src/app/login.service.ts), es comprova per l'API si les credencials son correctes i en cas afirmatiu es guarda en el localStorage el token rebut i es redirecciona a l'apartat d'usuari.
+ * [Login](src/app/login): Aquest component és el formulari de login. El que fa el login és fer una crida en el [servei de Login](src/app/login.service.ts), es comprova per l'API si les credencials son correctes i en cas afirmatiu es guarda en el localStorage el token rebut i es redirecciona a l'apartat d'usuari.
 
- * [Nosotros](Apuntalo/tree/master/frontend/src/app/nosotros): Aquest component és l'apartat de nosaltres. Només és un text.
+ * [Nosotros](src/app/nosotros): Aquest component és l'apartat de nosaltres. Només és un text.
 
- * [Registro](Apuntalo/tree/master/frontend/src/app/registro): Aquest component és el formulari de registre. En aquests moments no fa res encara, en un futur s'utilitzarà un servei de registre per poder parlar amb l'API i crear un nou usuari.
+ * [Registro](src/app/registro): Aquest component és el formulari de registre. En aquests moments no fa res encara, en un futur s'utilitzarà un servei de registre per poder parlar amb l'API i crear un nou usuari.
 
- * [Unidetail](Apuntalo/tree/master/frontend/src/app/unidetail): Aquest component és per poder mostrar un llistat de totes les carreres d'una universitat. Utilitza el [servei unidetail](Apuntalo/tree/master/frontend/src/app/unidetail.service.ts) per poder fer una crida a l'api. _De moment no funciona_
+ * [Unidetail](src/app/unidetail): Aquest component és per poder mostrar un llistat de totes les carreres d'una universitat. Utilitza el [servei unidetail](src/app/unidetail.service.ts) per poder fer una crida a l'api. _De moment no funciona_
 
- * [Universitats](Apuntalo/tree/master/frontend/src/app/universitats): Aquest component fa un llistat de totes les universitats mitjançant el [servei universitat](Apuntalo/tree/master/frontend/src/app/universitat.service.ts). El llistat es mostra en menú i clicant en una de les universitats porta al component Unidetail.
+ * [Universitats](src/app/universitats): Aquest component fa un llistat de totes les universitats mitjançant el [servei universitat](src/app/universitat.service.ts). El llistat es mostra en menú i clicant en una de les universitats porta al component Unidetail.
 
- * [User](Apuntalo/tree/master/frontend/src/app/user): Aquest component serà el tauler de control de l'usuari, per mostrar la seva informació i per si vol fer algun canvi a les preferències. Encara està en progrès.
+ * [User](src/app/user): Aquest component serà el tauler de control de l'usuari, per mostrar la seva informació i per si vol fer algun canvi a les preferències. Encara està en progrès.
 
 
 ## Build
