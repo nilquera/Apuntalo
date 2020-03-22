@@ -1,0 +1,11 @@
+<ul class="llistat">
+  <li *ngFor="let document of documents">
+    <div class="content">
+      <ul class="list-group">
+        <a routerLink="/documento/#" class="list-group-item list-group-item-action"><h4>{{document.title}}</h4></a>
+        <li class="list-group-item">Creado por <i>{{document.creator.username}}</i></li>
+      </ul>
+    </div>
+    <p>
+  </li>
+</ul>

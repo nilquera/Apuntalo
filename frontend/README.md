@@ -46,6 +46,8 @@ Els components actuals són:
 
  * [Carreradetail](src/app/carreradetail): Aquest component és per poder mostrar un llistat de totes les assignatures d'una carrera. Utilitza el [servei cardetail](src/app/cardetail.service.ts) per poder fer una crida a l'api.
 
+ * [Documents](src/app/documents): Aquest component és per poder mostrar un llistat de totes els documents que creen els usuaris sobre una assignatura. Utilitza el [servei documents](src/app/documents.service.ts) per poder fer una crida a l'api.
+
 
 ## Build
 

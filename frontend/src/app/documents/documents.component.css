@@ -1,0 +1,11 @@
+.llistat{
+  padding-top: 10%;
+  padding-left: 25%;
+  width: 75%;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  text-align: center;
+}
+
+ul{
+  list-style: none;
+}
