@@ -6,6 +6,7 @@ import { RegistroComponent } from './registro/registro.component';
 import { NosotrosComponent } from './nosotros/nosotros.component';
 import { UnidetailComponent } from './unidetail/unidetail.component';
 import { UserComponent } from './user/user.component';
+import { CarreradetailComponent} from './carreradetail/carreradetail.component';
 
 const routes: Routes = [
   {path: '', component: UniversitatsComponent},
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'registro', component: RegistroComponent},
   {path: 'nosotros', component: NosotrosComponent},
   {path: 'universitat/:name', component: UnidetailComponent},
-  {path: 'user', component: UserComponent}
+  {path: 'user', component: UserComponent},
+  {path: 'asignaturas/:name', component: CarreradetailComponent}
 ];
 
 @NgModule({

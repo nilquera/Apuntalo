@@ -15,6 +15,8 @@ import { UniversitatService } from './universitat.service';
 import { UnidetailService } from './unidetail.service';
 import { UnidetailComponent } from './unidetail/unidetail.component';
 import { UserComponent } from './user/user.component';
+import { CarreradetailComponent } from './carreradetail/carreradetail.component';
+import { CardetailService } from './cardetail.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { UserComponent } from './user/user.component';
     NosotrosComponent,
     RegistroComponent,
     UnidetailComponent,
-    UserComponent
+    UserComponent,
+    CarreradetailComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,7 @@ import { UserComponent } from './user/user.component';
     FormsModule, ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [LoginService, HttpClientModule, UniversitatService, UnidetailService],
+  providers: [LoginService, HttpClientModule, UniversitatService, UnidetailService, CardetailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

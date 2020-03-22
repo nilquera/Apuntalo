@@ -38,11 +38,13 @@ Els components actuals són:
 
  * [Registro](src/app/registro): Aquest component és el formulari de registre. En aquests moments no fa res encara, en un futur s'utilitzarà un servei de registre per poder parlar amb l'API i crear un nou usuari.
 
- * [Unidetail](src/app/unidetail): Aquest component és per poder mostrar un llistat de totes les carreres d'una universitat. Utilitza el [servei unidetail](src/app/unidetail.service.ts) per poder fer una crida a l'api. _De moment no funciona_
+ * [Unidetail](src/app/unidetail): Aquest component és per poder mostrar un llistat de totes les carreres d'una universitat. Utilitza el [servei unidetail](src/app/unidetail.service.ts) per poder fer una crida a l'api.
 
  * [Universitats](src/app/universitats): Aquest component fa un llistat de totes les universitats mitjançant el [servei universitat](src/app/universitat.service.ts). El llistat es mostra en menú i clicant en una de les universitats porta al component Unidetail.
 
  * [User](src/app/user): Aquest component serà el tauler de control de l'usuari, per mostrar la seva informació i per si vol fer algun canvi a les preferències. Encara està en progrès.
+
+ * [Carreradetail](src/app/carreradetail): Aquest component és per poder mostrar un llistat de totes les assignatures d'una carrera. Utilitza el [servei cardetail](src/app/cardetail.service.ts) per poder fer una crida a l'api.
 
 
 ## Build
