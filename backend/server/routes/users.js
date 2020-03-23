@@ -80,7 +80,7 @@ app.get('/users/:id', verifyToken, (req, res) => {
 })
 
 // Creates DB user with values in body [needs valid token with admin privilege]
-app.post('/users', [verifyToken, verifyAdmin], (req, res) => {
+app.post('/users', (req, res) => {
     let body = req.body
 
     let user = new User({
