@@ -37,15 +37,7 @@ app.get('/universities', (req, res) => {
 app.get('/universities/:id', (req, res) => {
     let id = req.params.id
     University.findById(id)
-        .populate({
-            path: 'degrees',
-            // populate: {
-            //     path: 'subjects',
-            //     populate: {
-            //         path: 'posts'
-            //     }
-            // }
-        })
+        .populate('degrees')
         .exec((err, universityDB) => {
             if (err) {
                 return res.status(500).json({
@@ -64,9 +56,9 @@ app.get('/universities/:id', (req, res) => {
             }
 
             res.json({
-            ok: true,
-            universityDB
-        })
+                ok: true,
+                universityDB
+            })
         })
 })
 
