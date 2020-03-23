@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-user',
@@ -7,11 +6,7 @@ import { AppComponent } from '../app.component';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-
-  constructor(private appcomponent: AppComponent) {
-    console.log(appcomponent.items);
-    appcomponent.items.splice(1,1);
-    appcomponent.items.splice(1,1);
+  constructor() {
   }
 
   ngOnInit(): void {
