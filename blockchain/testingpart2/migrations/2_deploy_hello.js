@@ -1,3 +1,4 @@
+const ConvertLib = artifacts.require("ConvertLib");
 const hello = artifacts.require('./HelloWorld');
 
 //const helloSettings = {
@@ -5,5 +6,8 @@ const hello = artifacts.require('./HelloWorld');
 //}
 
 module.exports = function(deployer){
-    deployer.deploy(hello, "Sergio");
+    deployer.deploy(ConvertLib);
+    deployer.link(ConvertLib, hello);
+    deployer.deploy(hello);
+    
 };
