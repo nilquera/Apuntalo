@@ -3,18 +3,22 @@ import { MenuItem } from './menu_items';
 export const ITEMINIT: MenuItem[] = [
   {
     name: 'Inicio',
-    url: ''
+    url: '',
+    ico: 'fas fa-home'
   },
   {
     name: 'Login',
-    url: 'login'
+    url: 'login',
+    ico: 'fas fa-key'
   },
   {
     name: 'Registro',
-    url: 'registro'
+    url: 'registro',
+    ico: 'far fa-address-card'
   },
   {
     name: 'Sobre Nosotros',
-    url: 'nosotros'
+    url: 'nosotros',
+    ico: 'fas fa-users'
   }
 ];
