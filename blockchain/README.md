@@ -59,6 +59,27 @@ Usar develop mode: Nos permite ejecutar sólo ciertas funciones a nuestro gusto,
 ```sh
 truffle develop
 ```
+**Usar console mode:** el que se usa de verdad.
+```sh
+truffle console
+```
+**Estando en console mode:**
+```sh
+truffle(developer)-> migrate
+```
+y se pueden hacer instancias o ejecutar funciones concretas:
+```sh
+truffle(developer)-> let instance = await HelloWorld.deployed()
+```
+```sh
+truffle(developer)-> let accounts = await web3.eth.getAccounts()
+```
+```sh
+truffle(developer)-> instance.sendCoin(accounts[0], accounts[1], 10);
+```
+```sh
+truffle(developer)-> instance.isTaken(accounts[1]);
+```
 Una vez ejecutado el comando se abrirá un terminal de developer, donde deberemos ejecutar migrate para hacer el deploy de las funciones. Cuando hagamos esto ya podemos trabajar con las funciones de manera personalizada. P.e: NombreContrato.at("address block").getName.call() <-- getName puede ser cualquier función.
 
 Para saber más sobre turffle develop clica [aquí](https://www.trufflesuite.com/docs/truffle/getting-started/using-truffle-develop-and-the-console)
@@ -68,6 +89,8 @@ Para saber más sobre turffle develop clica [aquí](https://www.trufflesuite.com
 ```sh
 truffle migrate
 ```
+
+
 
 #### Documentación oficial de TruffleSuite (muy útil)
 
