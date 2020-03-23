@@ -1,10 +1,11 @@
 pragma solidity >=0.4.21 <0.7.0;
 
 contract HelloWorld {
+
   string private name;
 
-  constructor(string memory _name) public {
-    name = _name;
+  constructor(string memory) public {
+    name = "Sergio";
   }
 
   function getName() public view returns (string memory) {
