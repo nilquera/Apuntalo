@@ -49,8 +49,38 @@ app.get('/users', verifyToken, (req, res) => {
     })
 })
 
+// Returns User by ID
+app.get('/users/:id', verifyToken, (req, res) => {
+    let id = req.params.id
+    User.findById(id)
+        .populate('posts', 'meta state _id title date')
+        .exec((err, userDB) => {
+            if (err) {
+                return res.status(500).json({
+                    ok: false,
+                    err
+                })
+            }
+
+            if (!userDB){
+                return res.status(400).json({
+                    ok: false,
+                    err: {
+                        message: `User with id ${id} not found`
+                    }
+                })
+            }
+
+
+            res.json({
+                ok: true,
+                userDB
+            })
+        })
+})
+
 // Creates DB user with values in body [needs valid token with admin privilege]
-app.post('/users', [verifyToken, verifyAdmin], (req, res) => {
+app.post('/users', (req, res) => {
     let body = req.body
 
     let user = new User({
