@@ -8,6 +8,7 @@ import { UnidetailComponent } from './unidetail/unidetail.component';
 import { UserComponent } from './user/user.component';
 import { CarreradetailComponent} from './carreradetail/carreradetail.component';
 import { DocumentsComponent } from './documents/documents.component';
+import { DocumentoComponent } from './documento/documento.component';
 import { DesconectarComponent } from './desconectar/desconectar.component';
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: 'user', component: UserComponent},
   {path: 'asignaturas/:name', component: CarreradetailComponent},
   {path: 'documentos/:name', component: DocumentsComponent},
+  {path: 'documento/:name', component: DocumentoComponent},
   {path: 'desconectar', component: DesconectarComponent}
 ];
 

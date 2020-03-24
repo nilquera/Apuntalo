@@ -10,4 +10,8 @@ export class DocumentsService {
   getAssigDetail(name: string){
       return this.http.get<any>('api/subjects/'+name);
     }
+
+  getDocDetail(name: String){
+    return this.http.get<any>('api/posts/'+name);
+  }
 }

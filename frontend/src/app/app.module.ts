@@ -20,6 +20,7 @@ import { CardetailService } from './cardetail.service';
 import { DocumentsComponent } from './documents/documents.component';
 import { DocumentsService } from './documents.service';
 import { DesconectarComponent } from './desconectar/desconectar.component';
+import { DocumentoComponent } from './documento/documento.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { DesconectarComponent } from './desconectar/desconectar.component';
     UserComponent,
     CarreradetailComponent,
     DocumentsComponent,
-    DesconectarComponent
+    DesconectarComponent,
+    DocumentoComponent
   ],
   imports: [
     BrowserModule,
