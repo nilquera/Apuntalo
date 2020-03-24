@@ -19,6 +19,7 @@ import { CarreradetailComponent } from './carreradetail/carreradetail.component'
 import { CardetailService } from './cardetail.service';
 import { DocumentsComponent } from './documents/documents.component';
 import { DocumentsService } from './documents.service';
+import { DesconectarComponent } from './desconectar/desconectar.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DocumentsService } from './documents.service';
     UnidetailComponent,
     UserComponent,
     CarreradetailComponent,
-    DocumentsComponent
+    DocumentsComponent,
+    DesconectarComponent
   ],
   imports: [
     BrowserModule,
