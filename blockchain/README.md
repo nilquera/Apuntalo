@@ -51,16 +51,56 @@ truffle unbox metacoin
 
 #### Usos básicos de Truffle
 
-Hacer testeo (compilar contratos & run test). Básicamente debugar y ver que todo está correcto.
+Hacer testeo (compilar contratos & run test). Básicamente compilar contratos y ver que todo está correcto. Esto ejecuta todas las funciones de los ficheros los cuales hemos hecho deploy.
 ```sh
 truffle test
 ```
+Usar develop mode: Nos permite ejecutar sólo ciertas funciones a nuestro gusto, insertar valores a variables, etc...todo para testear que las funciones van correctamente.
+```sh
+truffle develop
+```
+**Usar console mode:** el que se usa de verdad.
+```sh
+truffle console
+```
+**Estando en console mode:**
+```sh
+truffle(developer)-> migrate
+```
+y se pueden hacer instancias o ejecutar funciones concretas:
+```sh
+truffle(developer)-> let instance = await HelloWorld.deployed()
+```
+```sh
+truffle(developer)-> let accounts = await web3.eth.getAccounts()
+```
+```sh
+truffle(developer)-> instance.sendCoin(accounts[0], accounts[1], 10);
+```
+```sh
+truffle(developer)-> instance.isTaken(accounts[1]);
+```
+Una vez ejecutado el comando se abrirá un terminal de developer, donde deberemos ejecutar migrate para hacer el deploy de las funciones. Cuando hagamos esto ya podemos trabajar con las funciones de manera personalizada. P.e: NombreContrato.at("address block").getName.call() <-- getName puede ser cualquier función.
+
+Para saber más sobre turffle develop clica [aquí](https://www.trufflesuite.com/docs/truffle/getting-started/using-truffle-develop-and-the-console)
+
+
 **Una vez hecho el deploy de Ganache (está escuchando por un puerto)** podemos enviar lanzar las funciones para que interactúen con la base de datos de Ganache.
 ```sh
 truffle migrate
 ```
 
 
+
+#### Documentación oficial de TruffleSuite (muy útil)
+
+Para futuro development (y si queremos llevar nuestros contratos a una blockchain real):
+
+* [Trufflesuite CONFIG](https://www.trufflesuite.com/docs/truffle/reference/configuration)
+
+* [Trufflesuite DEVELOP](https://www.trufflesuite.com/docs/truffle/getting-started/using-truffle-develop-and-the-console)
+
+* [Trufflesuite Interacting with Contracts](https://www.trufflesuite.com/docs/truffle/getting-started/interacting-with-your-contracts)
 
 
 ### Ganache
@@ -80,6 +120,11 @@ npm install -g ethereumjs-testrpc
 Para activar el servidor Ganache escuchando un puerto:
 ```sh
 testrpc
+```
+**tools:**
+* Indicar el número de cuentas Ethereum:
+```sh
+testrpc -a [num_cuentas_eth_deseadas]
 ```
 
 **Nota** TestRPC es el "antiguo" Ganache. El comando automáticamente busca el nuevo nombre de Ganache y lo instala.
