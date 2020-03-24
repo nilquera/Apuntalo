@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  constructor() {
+  constructor(private router: Router) {
+    if(localStorage.getItem('mytoken') === null){
+      window.alert("Acceso no autorizado");
+      this.router.navigate(['/']);
+    }
   }
 
   ngOnInit(): void {
