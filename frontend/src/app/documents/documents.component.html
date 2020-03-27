@@ -1,5 +1,5 @@
 <div class="newFile" *ngIf="this.estaLogin">
-  <button type="button" class="btn btn-success"><i class="fas fa-plus-square"></i> Nuevo documento</button>
+  <button type="button" class="btn btn-success" (click)="this.router.navigate(['documento_nuevo/'+this.id]);"><i class="fas fa-plus-square"></i> Nuevo documento</button>
 </div>
 
 <ul class="llistat">

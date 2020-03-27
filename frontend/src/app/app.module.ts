@@ -21,6 +21,7 @@ import { DocumentsComponent } from './documents/documents.component';
 import { DocumentsService } from './documents.service';
 import { DesconectarComponent } from './desconectar/desconectar.component';
 import { DocumentoComponent } from './documento/documento.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DocumentoComponent } from './documento/documento.component';
     CarreradetailComponent,
     DocumentsComponent,
     DesconectarComponent,
-    DocumentoComponent
+    DocumentoComponent,
+    NewPostComponent
   ],
   imports: [
     BrowserModule,

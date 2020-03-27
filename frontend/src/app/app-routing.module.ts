@@ -10,6 +10,8 @@ import { CarreradetailComponent} from './carreradetail/carreradetail.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { DocumentoComponent } from './documento/documento.component';
 import { DesconectarComponent } from './desconectar/desconectar.component';
+import { NewPostComponent } from './new-post/new-post.component';
+
 
 const routes: Routes = [
   {path: '', component: UniversitatsComponent},
@@ -21,7 +23,8 @@ const routes: Routes = [
   {path: 'asignaturas/:name', component: CarreradetailComponent},
   {path: 'documentos/:name', component: DocumentsComponent},
   {path: 'documento/:name', component: DocumentoComponent},
-  {path: 'desconectar', component: DesconectarComponent}
+  {path: 'desconectar', component: DesconectarComponent},
+  {path: 'documento_nuevo/:name', component: NewPostComponent}
 ];
 
 @NgModule({
