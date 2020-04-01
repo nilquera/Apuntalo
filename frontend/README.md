@@ -48,6 +48,10 @@ Els components actuals són:
 
  * [Documents](src/app/documents): Aquest component és per poder mostrar un llistat de totes els documents que creen els usuaris sobre una assignatura. Utilitza el [servei documents](src/app/documents.service.ts) per poder fer una crida a l'api.
 
+ * [Desconectar](src/app/desconectar): Aquest component el que fa es destruir el token del localStorage i modificar el menú per poder tornar a fer login o registrar-te.
+
+* [Documento](src/app/documento): Aquest component és per poder mostrar el contingut d'un document (titol, cos, autor, vots i favorits). Utilitza el [servei documents](src/app/documents.service.ts) per poder fer una crida a l'api.
+
 
 ## Build
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { DocumentsService } from '../documents.service';
 @Component({
   selector: 'app-documents',
@@ -9,12 +9,18 @@ import { DocumentsService } from '../documents.service';
 export class DocumentsComponent implements OnInit {
   id: string;
   documents;
-
-  constructor(private documentsS: DocumentsService, private route: ActivatedRoute) {
+  estaLogin: boolean;
+  constructor(private documentsS: DocumentsService, private route: ActivatedRoute, public router: Router) {
     this.id = this.route.snapshot.paramMap.get("name");
     this.documentsS.getAssigDetail(this.id).subscribe(data => this.documents = data.subjectDB.posts);
+
+    if(localStorage.getItem('mytoken') !== null){
+      this.estaLogin = true;
+    }
+    else{
+      this.estaLogin = false;
+    }
   }
   ngOnInit(): void {
   }
-
 }

@@ -19,6 +19,28 @@ export class LoginComponent implements OnInit {
       email: '',
       pwd: ''
     });
+
+    if(localStorage.getItem('mytoken') !== null){
+
+      var index = this.appcomponent.items.findIndex(x => x.url === "login");
+      if (index > -1){
+        this.appcomponent.items.splice(index,1);
+      }
+
+      var index = this.appcomponent.items.findIndex(x => x.url === "registro");
+      this.appcomponent.items[index] = {
+        name: 'Mi usuario',
+        url: 'user',
+        ico: 'fas fa-user'
+      };
+      this.appcomponent.items.push({
+        name: 'Desconectar',
+        url: 'desconectar',
+        ico: 'fas fa-power-off'
+      });
+
+      this.router.navigate(['user']);
+    }
   }
 
   ngOnInit(): void {
