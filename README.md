@@ -42,6 +42,8 @@ Apuntalo es una webapp para editar documentos relacionados con la universidad de
 
 ![Diagrama Apuntalo][diagrama]
 
+![Ejemplo de Signup][signup]
+
 ### Construido con
 * [Ethereum](https://ethereum.org/)
 * [Node.js](https://nodejs.org/)
@@ -121,3 +123,4 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 [product-screenshot]: img/screenshot.png
 [diagrama]: img/diagrama.png
 [clases]: img/clases.png
+[signup]: img/signup.png
