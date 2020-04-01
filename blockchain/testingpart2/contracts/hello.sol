@@ -9,7 +9,7 @@ contract HelloWorld {
   mapping (address => bool) active_accounts; //Está activa la address? Si -> true, No ->false
   event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
-//Tendremos una cuenta master (la 0) con todo el ethereum.
+//Tendremos una cuenta master (la 0) con todo el ethereum. Mirar de hacer esta función en un contrato distinto si es necesario.
   constructor() public {
     name = "default";
     balances[msg.sender] = 100000;
@@ -44,14 +44,16 @@ contract HelloWorld {
   }
 
 
-  //Funciones para Transacciones:
+  //FUNCIONES PARA TRANSACCIONES:
+  //Devolver el balance de una cuenta. Se puede consultar el balance de una cuenta inactiva.
   function getBalance(address account) public view returns (uint){
     return balances[account];
   }
+  //Devolver el balance de una cuenta en valor Ethereum. Requisito: cuenta activa
   function getBalanceInEth(address account) public view returns(uint){
 		return ConvertLib.convert(getBalance(account),2);
 	}
-
+  //Enviar moneda de una cuenta sender a una reciever. Requisito: ambas cuentas (sender, reciever) activas. Returns: bool true si todo ha ido bien, false de lo contrario.
   function sendCoin(address sender, address reciever, uint amount) public returns (bool suficient) {
     if(balances[sender] < amount || active_accounts[sender] == false || active_accounts[reciever] == false) return false;
     balances[sender] -= amount;
