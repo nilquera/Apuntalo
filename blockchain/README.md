@@ -136,6 +136,19 @@ Hacer deploy de Ganache y escuchar en un puerto.
 testrpc
 ```
 
+### Web3
+
+Web3 nos permite enlazar la blockchain con nuestro backend, permitiendo lanzar peticiones remotas hacia esta.
+
+Para instalar web3:
+```sh
+npm install web3
+```
+
+**Muy útil** [Llamada a los métodos en web3](https://web3js.readthedocs.io/en/v1.2.0/web3-eth-contract.html)
+
+
+
 <!-- Estructura -->
 ## ESTRUCTURA DE LOS FICHEROS
 
