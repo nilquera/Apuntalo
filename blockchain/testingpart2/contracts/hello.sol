@@ -6,7 +6,7 @@ contract HelloWorld {
 
   string private name;
   mapping (address => uint) balances; //balance de cada address
-  mapping (address => bool) active_accounts; //Está activa la address? Si -> true, No ->false
+  mapping (address => bool) active_accounts ; //Está activa la address? Si -> true, No ->false
   event Transfer(address indexed _from, address indexed _to, uint256 _value);
 
 //Tendremos una cuenta master (la 0) con todo el ethereum. Mirar de hacer esta función en un contrato distinto si es necesario.
@@ -41,6 +41,24 @@ contract HelloWorld {
     if(active_accounts[account] == false) return "This account address doesn't exists";
     active_accounts[account] = false;
     return "Account deactivated successfully";
+  }
+
+  function signupusr() public returns (address) {
+    //bool free;
+    address free_address;
+    /*address _address;
+    uint iter = 0;
+    while(free == false) {
+      //Buscar una address libre
+      _address = address[iter];
+      if(active_accounts[address[iter]] == false) {
+        free_address = address[iter];
+        free = true;
+      }
+      iter++;
+    } */
+    activateAccount(free_address);
+    return free_address;
   }
 
 
