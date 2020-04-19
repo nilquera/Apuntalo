@@ -22,6 +22,7 @@ import { DocumentsService } from './documents.service';
 import { DesconectarComponent } from './desconectar/desconectar.component';
 import { DocumentoComponent } from './documento/documento.component';
 import { NewPostComponent } from './new-post/new-post.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,7 @@ import { NewPostComponent } from './new-post/new-post.component';
     FormsModule, ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [LoginService, HttpClientModule, UniversitatService, UnidetailService, CardetailService, DocumentsService],
+  providers: [LoginService, HttpClientModule, UniversitatService, UnidetailService, CardetailService, DocumentsService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,11 +11,12 @@ import { Router } from '@angular/router';
 export class DesconectarComponent implements OnInit {
 
   constructor(private appcomponent: AppComponent, private router: Router) {
-    if(localStorage.getItem('mytoken') === null){
+    if(localStorage.getItem('mytoken') == null && localStorage.getItem('myid')){
       this.router.navigate(['/']);
     }
     else{
       localStorage.removeItem('mytoken');
+      localStorage.removeItem('myid');
 
       var index = this.appcomponent.items.findIndex(x => x.url === "desconectar");
       if (index > -1){

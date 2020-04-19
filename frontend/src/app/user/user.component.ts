@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class UserComponent implements OnInit {
   constructor(private router: Router) {
-    if(localStorage.getItem('mytoken') === null){
+    if(localStorage.getItem('mytoken') == null || localStorage.getItem('myid') == null){
       window.alert("Acceso no autorizado");
       this.router.navigate(['/']);
     }

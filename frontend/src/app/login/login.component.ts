@@ -51,6 +51,7 @@ export class LoginComponent implements OnInit {
     this.login.doLogin(loginData.email, loginData.pwd).subscribe(data => {
         if(data.ok) {
           localStorage.setItem('mytoken', data.token);
+          localStorage.setItem('myid', data.user._id);
 
           var index = this.appcomponent.items.findIndex(x => x.url === "login");
           if (index > -1){

@@ -30,7 +30,7 @@ export class RegistroComponent implements OnInit {
       carreras: ''
     });
 
-    if(localStorage.getItem('mytoken') !== null){
+    if(localStorage.getItem('mytoken') !== null || localStorage.getItem('myid')){
 
       var index = this.appcomponent.items.findIndex(x => x.url === "login");
       if (index > -1){
