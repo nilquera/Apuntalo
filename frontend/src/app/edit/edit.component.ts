@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit',
@@ -8,11 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class EditComponent implements OnInit {
 
   padURL;
-  constructor() {
-    this.padURL = 'xdxd';
+  constructor(private sanitizer: DomSanitizer) {
+    this.padURL = 'http://localhost:9001/p/testpad';
   }
 
   ngOnInit(): void {
   }
 
+  transform(url) {
+      return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
 }

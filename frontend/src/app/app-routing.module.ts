@@ -11,6 +11,7 @@ import { DocumentsComponent } from './documents/documents.component';
 import { DocumentoComponent } from './documento/documento.component';
 import { DesconectarComponent } from './desconectar/desconectar.component';
 import { NewPostComponent } from './new-post/new-post.component';
+import { EditComponent } from './edit/edit.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'documentos/:name', component: DocumentsComponent},
   {path: 'documento/:name', component: DocumentoComponent},
   {path: 'desconectar', component: DesconectarComponent},
-  {path: 'documento_nuevo/:name', component: NewPostComponent}
+  {path: 'documento_nuevo/:name', component: NewPostComponent},
+  {path: 'edit/:name', component: EditComponent}
 ];
 
 @NgModule({
