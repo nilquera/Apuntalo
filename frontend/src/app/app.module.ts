@@ -23,6 +23,7 @@ import { DesconectarComponent } from './desconectar/desconectar.component';
 import { DocumentoComponent } from './documento/documento.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { UserService } from './user.service';
+import { EditComponent } from './edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { UserService } from './user.service';
     DocumentsComponent,
     DesconectarComponent,
     DocumentoComponent,
-    NewPostComponent
+    NewPostComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

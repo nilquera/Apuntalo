@@ -13,3 +13,9 @@
     box-shadow: 10px 10px 173px -125px  black;
     border-radius: 25px;
 }
+
+.newFile{
+  float: right;
+  padding-top: 2%;
+  padding-right: 5%;
+}

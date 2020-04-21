@@ -1,3 +1,7 @@
+<div class="newFile" *ngIf="this.esAutor">
+  <button type="button" class="btn btn-success" (click)="this.router.navigate(['edit/'+this.id]);"><i class="fas fa-pencil-alt"></i> Editar</button>
+</div>
+
 <div class="docu">
   <div class="cgrid">
   <div class="row">
