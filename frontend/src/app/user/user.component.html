@@ -1,1 +1,22 @@
-<p>user works!</p>
+<div class="center">
+  <div class="tab">
+    <button class="tablinks" (click)="changeTab($event, 'datos')">Mis Datos</button>
+    <button class="tablinks" (click)="changeTab($event, 'apuntalos')">Mis Apúntalos</button>
+    <button class="tablinks" (click)="changeTab($event, 'favs')">Mis Favoritos</button>
+  </div>
+
+  <div id="datos" class="tabcontent">
+    <h3>Mis Datos</h3>
+    <p>lmao xd.</p>
+  </div>
+
+  <div id="apuntalos" class="tabcontent">
+    <h3>Mis Apúntalos</h3>
+    <p>hehe xd.</p>
+  </div>
+
+  <div id="favs" class="tabcontent">
+    <h3>Mis Favoritos</h3>
+    <p>lol xd</p>
+  </div>
+</div>

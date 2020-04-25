@@ -1,0 +1,45 @@
+.center{
+  padding-top: 3%;
+  padding-left: 25%;
+  width: 80%;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  text-align: center;
+}
+
+.tab {
+  overflow: hidden;
+  background-color: #77a5f1;
+  border: 1px solid #4a8dff;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+
+.tab button:hover {
+  background-color: #dae8ff;
+}
+
+.tablinks{
+  color: white;
+}
+
+.tab button.active {
+  background-color: #839ecc;
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #4a8dff;
+  border-top: none;
+}

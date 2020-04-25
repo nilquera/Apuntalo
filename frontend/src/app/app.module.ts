@@ -24,6 +24,8 @@ import { DocumentoComponent } from './documento/documento.component';
 import { NewPostComponent } from './new-post/new-post.component';
 import { UserService } from './user.service';
 import { EditComponent } from './edit/edit.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,8 @@ import { EditComponent } from './edit/edit.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule, ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule, MatTabsModule,
+    BrowserAnimationsModule, NoopAnimationsModule
   ],
   providers: [LoginService, HttpClientModule, UniversitatService, UnidetailService, CardetailService, DocumentsService, UserService],
   bootstrap: [AppComponent]
