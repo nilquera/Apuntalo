@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-user',
@@ -9,11 +10,15 @@ import { Router } from '@angular/router';
 export class UserComponent implements OnInit {
 
   tabs;
+  info;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private user: UserService) {
     if(localStorage.getItem('mytoken') == null || localStorage.getItem('myid') == null){
       window.alert("Acceso no autorizado");
       this.router.navigate(['/']);
+    }
+    else{
+      this.user.getUser(localStorage.getItem('myid'),localStorage.getItem('mytoken')).subscribe(data => data = this.info);
     }
   }
 
