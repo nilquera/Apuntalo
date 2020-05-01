@@ -64,7 +64,15 @@ export class RegistroComponent implements OnInit {
         this.router.navigate(['registro']);
       }
       else{
-        //this.register.doRegister(registroData);
+        this.register.doRegister(registroData.user,registroData.email,registroData.pwd,registroData.name,registroData.unis,registroData.carreras).subscribe(data => {
+            if(data.ok){
+              this.router.navigate(['login']);
+            }
+            else{
+              console.warn('Algo ha fallat en la crida al backend!');
+            }
+          }
+        );
       }
   }
 

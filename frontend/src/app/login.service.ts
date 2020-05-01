@@ -12,6 +12,6 @@ export class LoginService {
     }
 
   doRegister(username: string, email: string, password: string, name: string, university: string, degree: string){
-    return this.http.post<any>('api/register',{username, email, password, name, university, degree});
+    return this.http.post<any>('api/users',{username, email, password, name, university, degree});
   }
 }
