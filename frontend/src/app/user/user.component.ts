@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import { UnidetailService } from '../unidetail.service';
+import { CardetailService } from '../cardetail.service';
 
 @Component({
   selector: 'app-user',
@@ -11,14 +13,22 @@ export class UserComponent implements OnInit {
 
   tabs;
   info;
+  uni;
+  carrera;
 
-  constructor(private router: Router, private user: UserService) {
+  constructor(private router: Router, private user: UserService, private uniInfo: UnidetailService, private car: CardetailService) {
     if(localStorage.getItem('mytoken') == null || localStorage.getItem('myid') == null){
       window.alert("Acceso no autorizado");
       this.router.navigate(['/']);
     }
     else{
-      this.user.getUser(localStorage.getItem('myid'),localStorage.getItem('mytoken')).subscribe(data => data = this.info);
+      this.user.getUser(localStorage.getItem('myid'),localStorage.getItem('mytoken')).subscribe(data => {
+        this.info = data.userDB;
+        console.log(this.info);
+
+        this.uniInfo.getUniDetail(this.info.university).subscribe(data => this.uni = data.universityDB.name);
+        this.car.getCarDetail(this.info.degree).subscribe(data => this.carrera = data.degreeDB.index.name);
+      });
     }
   }
 
