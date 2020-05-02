@@ -31,7 +31,15 @@
 
   <div id="apuntalos" class="tabcontent">
     <h3>Mis Apúntalos</h3>
-    <p>texto.</p>
+    <table class="table table-hover">
+    <tbody>
+      <tr *ngFor="let post of this.info.posts">
+        <td><a routerLink="/documento/{{post._id}}"><b>{{post.title}}</b></a></td>
+        <td><i class="fas fa-thumbs-up"></i> {{post.meta.votes}}</td>
+        <td><i class="fas fa-heart"></i> {{post.meta.favs}}</td>
+      </tr>
+    </tbody>
+  </table>
   </div>
 
   <div id="favs" class="tabcontent">
