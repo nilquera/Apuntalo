@@ -14,4 +14,9 @@ export class DocumentsService {
   getDocDetail(name: String){
     return this.http.get<any>('api/posts/'+name);
   }
+
+  createDoc(title, body, token, subjectId){
+    var headers = { 'Authorization': token};
+    return this.http.post<any>('api/posts', {title, body, subjectId},{ headers });
+  }
 }
