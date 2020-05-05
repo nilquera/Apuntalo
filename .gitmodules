@@ -1,0 +1,4 @@
+[submodule "etherpad-lite"]
+	path = etherpad-lite
+	url = git@github.com:nilquera/etherpad-lite.git
+	branch = master
