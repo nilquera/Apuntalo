@@ -28,7 +28,7 @@ app.get('/users', verifyToken, (req, res) => {
         })
     }
 
-    User.find({state: true}, 'name email role state google img')
+    User.find({state: true}, 'name email role state google img posts')
     .skip(from)
     .limit(limit)
     .exec((err, users) => {
