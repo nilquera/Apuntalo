@@ -1,7 +1,10 @@
 <div class="newFile" *ngIf="this.esAutor">
   <button type="button" class="btn btn-success" (click)="this.router.navigate(['edit/'+this.id]);"><i class="fas fa-pencil-alt"></i> Editar</button>
+  <p></p><button type="button" class="btn btn-success" (click)="this.router.navigate(['addparticipant/'+this.id]);"><i class="fas fa-user-plus"></i> Añadir Participante</button>
 </div>
-
+<div class="newFile" *ngIf="!this.esAutor">
+  <button type="button" class="btn btn-danger" (click)="this.router.navigate(['comprar/'+this.id]);"><i class="fas fa-shopping-cart"></i> Comprar</button>
+</div>
 <div class="docu">
   <div class="cgrid">
   <div class="row">

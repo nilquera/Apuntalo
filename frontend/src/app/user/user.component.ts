@@ -16,7 +16,7 @@ export class UserComponent implements OnInit {
   uni;
   carrera;
 
-  constructor(private router: Router, private user: UserService, private uniInfo: UnidetailService, private car: CardetailService) {
+  constructor(public router: Router, private user: UserService, private uniInfo: UnidetailService, private car: CardetailService) {
     if(localStorage.getItem('mytoken') == null || localStorage.getItem('myid') == null){
       window.alert("Acceso no autorizado");
       this.router.navigate(['/']);
