@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from "@angular/router";
 import { DomSanitizer } from '@angular/platform-browser';
+import { DocumentsService } from '../documents.service';
 
 @Component({
   selector: 'app-edit',
@@ -9,8 +11,20 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class EditComponent implements OnInit {
 
   padURL;
-  constructor(private sanitizer: DomSanitizer) {
-    this.padURL = 'http://localhost:9001/p/testpad';
+  padID;
+  postID;
+
+
+  constructor(private documentS: DocumentsService, private sanitizer: DomSanitizer, private route: ActivatedRoute, private router: Router) {
+    this.postID = this.route.snapshot.paramMap.get("name");
+
+    this.documentS.getDocDetail(this.postID).subscribe(data => {
+      if(data.postDB.creator._id != localStorage.myid){
+        this.router.navigate(['']);
+      }
+      this.padID = data.postDB.padID;
+      this.padURL = 'http://localhost:9001/p/'+ this.padID;
+    });
   }
 
   ngOnInit(): void {
