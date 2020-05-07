@@ -1,0 +1,75 @@
+Setmana del 9 al 15 de març:
+Per la part del frontend es fa el disseny inicial del menú, ja amb el
+projecte d'Angular creat. Es crea un llistat estàtic (sense l'API del
+backend) de les universitats per poder tenir una idea de com es veurà
+i s'interectuarà amb els llistats d'universitats, carreres i assignatures.
+
+Seguidament es creen els formularis de registre i login, sense funcionar
+tampoc ja que encara el frontend i el backend no comuniquen.
+
+
+Setmana del 16 al 22 de març:
+Es comencen a crear els serveis al frontend per poder utilitzar els
+endpoints del backend. Es modifica un fitxer al projecte d'Angular
+que deixa fer un proxy amb el backend per poder fer les crides. Sense
+aquest proxy no es podia fer ja que donava un error de la capçalera CORS.
+
+Els endpoints que es pot utilitzar en aquest moment és el de fer login,
+llistar les universitats, llistar les carreres d'una universitat, llistar
+les assignatures d'una carrera i llistar documents d'una assignatura.
+
+També s'adapta la web per poder utilitzar el token que ens dóna l'API.
+D'aquesta manera es pot aconseguir mantenir sessions. Amb l'ús de sessions
+també es fa un menú dinàmic (que no apareguin els botons de login/registre)
+al estar connectat.
+
+
+Setmana del 23 al 29 de març:
+Es fan canvis de disseny al frontend. Es posen icones i es posen degradats
+al menú. Aquests canvis son irrelevants pel funcionament de la web.
+
+S'afegeixen restriccions d'accés, on es comprova que un usuari connectat
+no pugui accedir a la pàgina de login/registre. També es comprova que algú
+no connectat pugui accedir a la pàgina d'usuari.
+
+S'implementa una funció per a que un usuari es pugui desconnectar.
+
+Es crea el component que dóna els detalls d'un document. Aquest component
+dóna el títol, descripció i autoria del document. També conté un botó
+que només pot veure el creador del document (Botó Editar).
+
+Finalment es crea el formulari de creació d'un document, el qual encara no
+funciona.
+
+Setmana del 6 al 12 d'abril:
+S'implementa al frontend el servei que permetrà el registre d'usuaris.
+Encara no funciona perquè faltava acordar alguns paràmetres.
+
+Setmana del 13 al 19 d'abril:
+Es fan modificacions a la pàgina de l'usuari per poder fer ús de l'API i
+així obtenir tota la informació de l'usuari que ha fet login.
+
+Setmana del 20 al 26 d'abril:
+S'afageix Etherpad al projecte i es fa alguna petita prova inicial per veure
+el seu correcte funcionament. Quan un usuari vol editar un document veurà
+sempre el mateix pad independentment del document.
+
+També segueixen les modificacions a la pàgina de l'usuari, per tal de poder
+interactuar amb pestanyes entre diferents categories.
+
+Setmana del 27 d'abril al 3 de maig:
+Funciona el registre d'un usuari pel Frontend. En la pàgina
+d'usuari es creen taules per poder llistar la informació de l'usuari i
+també per poder llistar tots els documents que ha creat.
+
+Finalment es fa la implementació per a que un usuari pugui crear posts des
+del frontend. Tot i així, aquesta funció no crea pads a l'Etherpad, és una
+cosa a implementar encara.
+
+Setmana del 4 al 10 de maig:
+Un cop des del backend es poden fer crides al Etherpad, es fa la modificació
+a la pàgina d'edició per poder obtenir des de l'api l'ID del pad i així
+obtenir l'URL del pad per poder-lo visualitzar des del frontend.
+
+També s'afegeixen botons per poder preparar futures funcions per a la compra
+de documents i per poder afegir participants a un document.
