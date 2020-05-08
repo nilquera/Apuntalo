@@ -9,13 +9,29 @@
   padding: 10%;
 }
 .cgrid{
-    background: linear-gradient(#ecf3ff,#ffffff);
-    box-shadow: 10px 10px 173px -125px  black;
-    border-radius: 25px;
+  border-radius: 5px;
+
+  background: rgb(249,249,249);
+  background: linear-gradient(90deg, rgba(249,249,249,1) 35%, rgba(251,228,228,0.6355275386521797) 100%);
+  box-shadow: 10px 7px 37px -24px rgba(0,0,0,0.75);
 }
 
 .newFile{
   float: right;
   padding-top: 2%;
   padding-right: 5%;
+  width: 20%;
+}
+
+.newParticipant{
+  display: none;
+  border-radius: 5px;
+
+  background: rgb(249,249,249);
+  background: linear-gradient(90deg, rgba(249,249,249,1) 35%, rgba(251,228,228,0.6355275386521797) 100%);
+  box-shadow: 10px 7px 37px -24px rgba(0,0,0,0.75);
+}
+
+.formBox{
+  padding: 5%;
 }
