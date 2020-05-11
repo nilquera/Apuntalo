@@ -39,4 +39,4 @@ process.env.EHOST = "localhost";
 process.env.EURL = `http://${process.env.EHOST}:${process.env.EPORT}`;
 
 process.env.EAPI_KEY =
-  "bfe4405c820e3a2b9e51212488dc63834eb6ee05f46bb024c3107c5c9c995319";
+  "7bb4272cc79756696a73eedffbd435bd5cd53653337dd2abb243e9f2adf9b211";
