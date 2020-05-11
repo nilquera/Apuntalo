@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { call_blockchain } = require("../../blockchain/web3-3");
+// const { call_blockchain } = require("../../blockchain/web3-3");
 
 const app = express();
 
@@ -24,10 +24,9 @@ app.use(
 );
 
 // inicialitzar call_blockchain
-
-blockchain = new call_blockchain();
-blockchain.init_web3();
-console.log("blockchain inicialitzada");
+// blockchain = new call_blockchain();
+// blockchain.init_web3();
+// console.log("blockchain inicialitzada");
 
 mongoose
   .connect(process.env.URLDB, {
@@ -47,4 +46,4 @@ mongoose
     throw err;
   });
 
-module.exports.blockchain = blockchain;
+// module.exports.blockchain = blockchain;

@@ -1,5 +1,5 @@
 // Default port
-process.env.PORT = process.env.PORT || 3001;
+process.env.PORT = process.env.PORT || 3002;
 
 // Environment
 process.env.NODE_ENV = process.env.NODE_ENV || "dev"; //la variable la seteja heroku en produccion. Else -> dev

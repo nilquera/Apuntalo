@@ -21,6 +21,12 @@ let postSchema = new Schema({
     ref: "User",
     required: true,
   },
+  editors: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
   padID: {
     type: String,
     required: true,
