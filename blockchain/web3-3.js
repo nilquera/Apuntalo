@@ -34,9 +34,14 @@ class call_blockchain {
   }
 
   async get_addresses() {
-    data = await this.web3.eth.getAccounts();
-    console.log(data);
-    return data;
+    try {
+      var data = await this.web3.eth.getAccounts();
+      //console.log(data);
+      data = Array.from(data);
+      return data;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async address_used(account) {
@@ -45,11 +50,7 @@ class call_blockchain {
     return data;
   }
 
-  async signup_user() {
-    const data = await this.contract.methods.signupusr().call();
-    console.log(data);
-    return data;
-  }
+  
 
   async get_Balance(account) {
     try {
@@ -74,11 +75,11 @@ class call_blockchain {
     }
   }
 
-  async activate_account(account) {
+  async activate_account(account, charged) {
     try {
       var data = await this.contract.methods
         .activateAccount(account)
-        .send({ from: cuenta1 });
+        .send({ from: charged});
       console.log(data);
       this.update();
       return data;
@@ -86,20 +87,54 @@ class call_blockchain {
       console.error(error);
     }
   }
+
+  async signup_user() {
+    try  {
+      var free_account = '';
+      var found = false;
+      var accounts = await this.web3.eth.getAccounts();
+      //var accounts = blockchain.get_addresses();
+      //console.log(accounts[0]);
+      var i = 0;
+      var length = accounts.length;
+      while((found == false) && (i < length)) {
+          var used = await blockchain.address_used(accounts[i]);
+          if(used == false) {
+            free_account = accounts[i];
+            await blockchain.activate_account(free_account, accounts[0]);
+            found = true;
+            return free_account;
+          }
+          ++i;
+      }
+      console.log("No queden mes usuaris Ethereum lliures");
+      return null;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
 }
 //
 // console.log("invocando objeto...");
-// blockchain = new call_blockchain();
+blockchain = new call_blockchain();
 // console.log("objeto invocado");
-// blockchain.init_web3();
+blockchain.init_web3();
 // console.log("web3 iniciado");
 // console.log("Escenario: cuenta 1 (Activada) -> 100.000 monedas en su cuenta");
 // console.log("           cuenta 2 (Desactivada) -> 0 monedas en su cuenta");
 // console.log(
 //   "Acción: Activar cuenta 2 y enviar x monedas de cuenta 1 a cuenta 2"
 // );
-
 //accounts = blockchain.get_addresses();
+//accounts = blockchain.get_addresses();
+//console.log(accounts[0]);
+(async () => {
+  var result = await blockchain.signup_user();
+  console.log(result);
+})()
+//console.log(result);
 // var cuenta1 = "0x97aa547e791f83288520898f849c3119175050c7";
 // var cuenta2 = "0xe2b0a73bc78f65f5a7c100b6b4b758baca30a7b7";
 // setTimeout(function () {
