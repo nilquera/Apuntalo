@@ -41,4 +41,8 @@ export class DocumentoComponent implements OnInit {
     }
   }
 
+  onSubmit(value){
+
+  }
+
 }
