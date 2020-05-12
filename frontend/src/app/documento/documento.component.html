@@ -1,7 +1,7 @@
 <div class="newFile" *ngIf="this.esAutor">
   <button type="button" class="btn btn-success" (click)="this.router.navigate(['edit/'+this.id]);"><i class="fas fa-pencil-alt"></i> Editar</button>
   <p></p><button type="button" class="btn btn-success" (click)="showForm($event)"><i class="fas fa-user-plus"></i> Añadir Participante</button><p>
-  <div class="newParticipant">
+  <div class="newParticipant" *ngIf="this.esAutor">
     <form class="formBox" [formGroup]="addParticipant" (ngSubmit)="onSubmit(addParticipant.value)">
      <div class="form-group">
        <label for="name">Usuario:</label>
@@ -11,7 +11,10 @@
     </form>
   </div>
 </div>
-<div class="newFile" *ngIf="!this.esAutor">
+<div class="newFile" *ngIf="this.esEditor">
+  <button type="button" class="btn btn-success" (click)="this.router.navigate(['edit/'+this.id]);"><i class="fas fa-pencil-alt"></i> Editar</button>
+</div>
+<div class="newFile" *ngIf="!this.esAutor && !this.esEditor">
   <button type="button" class="btn btn-danger" (click)="this.router.navigate(['comprar/'+this.id]);"><i class="fas fa-shopping-cart"></i> Comprar</button>
 </div>
 <div class="docu">

@@ -19,7 +19,13 @@ export class EditComponent implements OnInit {
     this.postID = this.route.snapshot.paramMap.get("name");
 
     this.documentS.getDocDetail(this.postID).subscribe(data => {
-      if(data.postDB.creator._id != localStorage.myid){
+      var esEditor: boolean;
+      for(let editor of data.postDB.editors){
+        if(editor == localStorage.myid){
+          esEditor = true;
+        }
+      }
+      if(data.postDB.creator._id != localStorage.myid && !esEditor){
         this.router.navigate(['']);
       }
       this.padID = data.postDB.padID;

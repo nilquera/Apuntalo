@@ -13,6 +13,7 @@ export class DocumentoComponent implements OnInit {
   id: string;
   document;
   esAutor: boolean;
+  esEditor: boolean;
   addParticipant;
 
   constructor(private formBuilder: FormBuilder, private documentS: DocumentsService, private route: ActivatedRoute, public router: Router) {
@@ -25,6 +26,12 @@ export class DocumentoComponent implements OnInit {
       this.document = data.postDB;
       if(data.postDB.creator._id == localStorage.myid){
         this.esAutor = true;
+      }
+
+      for(let editor of data.postDB.editors){
+        if(editor == localStorage.myid){
+          this.esEditor = true;
+        }
       }
     });
   }
