@@ -19,4 +19,9 @@ export class DocumentsService {
     var headers = { 'Authorization': token};
     return this.http.post<any>('api/posts', {title, body, subjectId},{ headers });
   }
+
+  addParticipant(post, user, token){
+    var headers = { 'Authorization': token};
+    return this.http.put<any>('api/posts/'+post+'/'+user, {post}, {headers});
+  }
 }

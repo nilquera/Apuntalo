@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DocumentsService } from '../documents.service';
+import { UserService } from '../user.service';
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder } from '@angular/forms';
 
@@ -42,7 +43,15 @@ export class DocumentoComponent implements OnInit {
   }
 
   onSubmit(value){
-
+    console.log(localStorage.getItem('mytoken'));
+    this.documentS.addParticipant(this.id,value.name,localStorage.getItem('mytoken')).subscribe(data => {
+      if(data.ok){
+        location.reload();
+      }
+      else{
+        window.alert('ID invalido!');
+      }
+    });
   }
 
 }
