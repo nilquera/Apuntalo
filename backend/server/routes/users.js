@@ -5,8 +5,6 @@ const User = require("../models/user");
 const { verifyToken, verifyAdmin } = require("../middlewares/authentication");
 const app = express();
 
-const { blockchain } = require("../server.js");
-
 // Returns DB users with state: true [needs valid token]
 app.get("/users", verifyToken, (req, res) => {
   let from = req.query.from || 0;
@@ -30,7 +28,10 @@ app.get("/users", verifyToken, (req, res) => {
     });
   }
 
-  User.find({ state: true }, "name email role state google img posts")
+  User.find(
+    { state: true },
+    "username email name role state google img posts blockchain_address"
+  )
     .skip(from)
     .limit(limit)
     .exec((err, users) => {
@@ -80,11 +81,9 @@ app.get("/users/:id", verifyToken, (req, res) => {
     });
 });
 
-// Creates DB user with values in body [needs valid token with admin privilege]
 app.post("/users", (req, res) => {
+  let { blockchain } = require("../server");
   let body = req.body;
-
-  // blockchain.signup_user();
 
   let user = new User({
     username: body.username,
@@ -95,10 +94,10 @@ app.post("/users", (req, res) => {
     university: body.university,
     degree: body.degree,
     img: body.img,
-    blockchain_address: "aslfjddsalf",
+    blockchain_address: "default",
   });
 
-  user.save((err, userDB) => {
+  user.save(async (err, userDB) => {
     if (err) {
       return res.status(400).json({
         ok: false,
@@ -106,9 +105,27 @@ app.post("/users", (req, res) => {
       });
     }
 
-    res.json({
-      ok: true,
-      user: userDB,
+    console.log("Demanant adressa...");
+    //let address = blockchain.signup_user();
+    let address = await blockchain.signup_user();
+    console.log(address);
+
+    let body = {
+      blockchain_address: address,
+    };
+
+    User.findByIdAndUpdate(userDB._id, body, { new: true }, (err, userDB) => {
+      if (err) {
+        return res.status(400).json({
+          ok: false,
+          err,
+        });
+      }
+
+      res.json({
+        ok: true,
+        user: userDB,
+      });
     });
   });
 });

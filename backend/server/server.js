@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-// const { call_blockchain } = require("../../blockchain/web3-3");
+const { call_blockchain } = require("../../blockchain/web3-3");
 
 const app = express();
 
@@ -19,14 +19,9 @@ app.use(bodyParser.json());
 app.use("/api", require("./routes/index"));
 
 // Habilitar la carpeta public
-app.use(
-  express.static(path.resolve(__dirname, "../../frontend/dist/angularweb"))
-);
-
-// inicialitzar call_blockchain
-// blockchain = new call_blockchain();
-// blockchain.init_web3();
-// console.log("blockchain inicialitzada");
+// app.use(
+//   express.static(path.resolve(__dirname, "../../frontend/dist/angularweb"))
+// );
 
 mongoose
   .connect(process.env.URLDB, {
@@ -41,9 +36,11 @@ mongoose
   })
   .then(() => {
     console.log("[ OK ] listening on port", process.env.PORT);
+    blockchain = new call_blockchain();
+    blockchain.init_web3();
   })
   .catch((err) => {
     throw err;
   });
 
-// module.exports.blockchain = blockchain;
+module.exports.blockchain = blockchain;

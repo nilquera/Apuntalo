@@ -44,6 +44,10 @@ let postSchema = new Schema({
     type: Boolean,
     default: true,
   },
+  price: {
+    type: Number,
+    default: 0,
+  },
 });
 
 postSchema.plugin(uniqueValidator, { message: "{PATH} must be unique" });
