@@ -28,7 +28,10 @@ app.get("/users", verifyToken, (req, res) => {
     });
   }
 
-  User.find({ state: true }, "username email name role state google img posts")
+  User.find(
+    { state: true },
+    "username email name role state google img posts blockchain_address"
+  )
     .skip(from)
     .limit(limit)
     .exec((err, users) => {
@@ -91,7 +94,7 @@ app.post("/users", (req, res) => {
     university: body.university,
     degree: body.degree,
     img: body.img,
-    blockchain_address: "aslfjddsalf",
+    blockchain_address: "default",
   });
 
   user.save(async (err, userDB) => {
