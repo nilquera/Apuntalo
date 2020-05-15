@@ -10,24 +10,24 @@ let Subject = require("../models/subject");
 let User = require("../models/user");
 
 // Get all Posts
-app.get("/posts", (req, res) => {
-  Post.find({ state: true })
-    .sort("date")
-    .populate("creator", "name email")
-    .exec((err, posts) => {
-      if (err) {
-        return res.status(500).json({
-          ok: false,
-          err,
-        });
-      }
-
-      res.json({
-        ok: true,
-        posts,
-      });
-    });
-});
+// app.get("/posts", (req, res) => {
+//   Post.find({ state: true })
+//     .sort("date")
+//     .populate("creator", "name email")
+//     .exec((err, posts) => {
+//       if (err) {
+//         return res.status(500).json({
+//           ok: false,
+//           err,
+//         });
+//       }
+//
+//       res.json({
+//         ok: true,
+//         posts,
+//       });
+//     });
+// });
 
 // Get Post by Id
 app.get("/posts/:id", (req, res) => {
@@ -91,7 +91,10 @@ app.post("/posts", [verifyToken], (req, res) => {
       apikey: process.env.EAPI_KEY,
       host: process.env.EHOST,
       port: process.env.EPORT,
+      ssl: true,
+      rejectUnauthorized: false,
     });
+    console.log("[ connected etherpad ]");
     let args = {
       padID: newPadID,
     };
@@ -182,24 +185,11 @@ app.put("/posts/:id", [verifyToken], (req, res) => {
 });
 
 // Add user to editors
-app.put("/posts/:pid/:uid", [verifyToken], (req, res) => {
+app.put("/posts/:pid/:uname", [verifyToken], (req, res) => {
   let pid = req.params.pid; //post id
-  let uid = req.params.uid; //user id to add
+  let uname = req.params.uname; //user id to add
   // req.user._id --> user id that requests. Must be = post creator
-
-  if (!ObjectId.isValid(pid)) {
-    return res.status(400).json({
-      ok: false,
-      message: "Post ID must be a valid id",
-    });
-  } else if (!ObjectId.isValid(uid)) {
-    return res.status(400).json({
-      ok: false,
-      message: "User ID must be a valid id",
-    });
-  }
-
-  Post.findById(pid).exec((err, postDB) => {
+  User.findOne({ username: uname }, "_id", (err, uid) => {
     if (err) {
       return res.status(500).json({
         ok: false,
@@ -207,57 +197,82 @@ app.put("/posts/:pid/:uid", [verifyToken], (req, res) => {
       });
     }
 
-    if (!postDB) {
+    if (!uid) {
       return res.status(400).json({
         ok: false,
         err: {
-          message: `Post with id ${pid} not found`,
+          message: `Username ${uname} not found`,
         },
       });
     }
 
-    if (postDB.creator != req.user._id) {
+    if (!ObjectId.isValid(pid)) {
       return res.status(400).json({
         ok: false,
-        err: {
-          message: "Requesting User must be Post creator",
-        },
+        message: "Post ID must be a valid id",
       });
     }
 
-    let body = {
-      editors: postDB.editors,
-    };
-    if (body.editors.indexOf(uid) === -1) body.editors.push(uid);
-    else {
-      return res.status(400).json({
-        ok: false,
-        err: {
-          message: `User ${uid} is already an editor`,
-        },
-      });
-    }
-
-    console.log(body);
-
-    Post.findByIdAndUpdate(
-      pid,
-      body,
-      { new: true, runValidators: true, context: "query" },
-      (err, postDB) => {
-        if (err) {
-          return res.status(500).json({
-            ok: false,
-            err,
-          });
-        }
-
-        res.json({
-          ok: true,
-          post: postDB,
+    Post.findById(pid).exec((err, postDB) => {
+      if (err) {
+        return res.status(500).json({
+          ok: false,
+          err,
         });
       }
-    );
+
+      if (!postDB) {
+        return res.status(400).json({
+          ok: false,
+          err: {
+            message: `Post not found`,
+          },
+        });
+      }
+
+      if (postDB.creator != req.user._id) {
+        return res.status(400).json({
+          ok: false,
+          err: {
+            message: "Requesting User must be the Post creator",
+          },
+        });
+      }
+
+      let body = {
+        editors: postDB.editors,
+      };
+      console.log(body);
+      console.log(uid);
+      if (body.editors.indexOf(uid._id) === -1) body.editors.push(uid._id);
+      else {
+        return res.status(400).json({
+          ok: false,
+          err: {
+            message: `User ${uname} is already an editor`,
+          },
+        });
+      }
+
+      Post.findByIdAndUpdate(
+        pid,
+        body,
+        { new: true, runValidators: true, context: "query" },
+        (err, postDB) => {
+          if (err) {
+            return res.status(500).json({
+              ok: false,
+              err,
+            });
+          }
+
+          res.json({
+            ok: true,
+            post: postDB,
+          });
+        }
+      );
+    });
   });
 });
 
