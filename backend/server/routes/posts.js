@@ -279,6 +279,7 @@ app.put("/posts/:pid/:uname", [verifyToken], (req, res) => {
 // Delete Post
 app.delete("/posts/:id", [verifyToken], (req, res) => {
   let id = req.params.id;
+  // req.user._id --> user id that requests. Must be = post creator
 
   Post.findByIdAndUpdate(id, { state: false }, { new: true }, (err, postDB) => {
     if (err) {
@@ -293,6 +294,16 @@ app.delete("/posts/:id", [verifyToken], (req, res) => {
         ok: false,
         err: {
           message: `Post with id ${id} not found`,
+        },
+      });
+    }
+
+    console.log(postDB.creator, req.user._id);
+    if (postDB.creator != req.user._id) {
+      return res.status(400).json({
+        ok: false,
+        err: {
+          message: `Only Post creator can delete`,
         },
       });
     }
