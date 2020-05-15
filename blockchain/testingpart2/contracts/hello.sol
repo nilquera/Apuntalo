@@ -43,25 +43,6 @@ contract HelloWorld {
     return "Account deactivated successfully";
   }
 
-  function signupusr() public returns (address) {
-    //bool free;
-    address free_address;
-    /*address _address;
-    uint iter = 0;
-    while(free == false) {
-      //Buscar una address libre
-      _address = address[iter];
-      if(active_accounts[address[iter]] == false) {
-        free_address = address[iter];
-        free = true;
-      }
-      iter++;
-    } */
-    activateAccount(free_address);
-    return free_address;
-  }
-
-
   //FUNCIONES PARA TRANSACCIONES:
   //Devolver el balance de una cuenta. Se puede consultar el balance de una cuenta inactiva.
   function getBalance(address account) public view returns (uint){
@@ -71,6 +52,12 @@ contract HelloWorld {
   function getBalanceInEth(address account) public view returns(uint){
 		return ConvertLib.convert(getBalance(account),2);
 	}
+
+  function ingreso(address account, uint amount) public returns (bool exito) {
+    if(active_accounts[account] == false || (amount < 0)) return false;
+    balances[account] += amount;
+    return true;
+  }
   //Enviar moneda de una cuenta sender a una reciever. Requisito: ambas cuentas (sender, reciever) activas. Returns: bool true si todo ha ido bien, false de lo contrario.
   function sendCoin(address sender, address reciever, uint amount) public returns (bool suficient) {
     if(balances[sender] < amount || active_accounts[sender] == false || active_accounts[reciever] == false) return false;
