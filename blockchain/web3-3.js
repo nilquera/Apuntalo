@@ -93,8 +93,6 @@ class call_blockchain {
       var free_account = '';
       var found = false;
       var accounts = await this.web3.eth.getAccounts();
-      //var accounts = blockchain.get_addresses();
-      //console.log(accounts[0]);
       var i = 0;
       var length = accounts.length;
       while((found == false) && (i < length)) {
