@@ -37,7 +37,7 @@ class call_blockchain {
     try {
       var data = await this.web3.eth.getAccounts();
       //console.log(data);
-      data = Array.from(data);
+      //data = Array.from(data);
       return data;
     } catch (error) {
       console.error(error);
@@ -66,7 +66,7 @@ class call_blockchain {
     try {
       var data = await this.contract.methods
         .sendCoin(sender, reciever, amount)
-        .send({ from: cuenta1 });
+        .send({ from: sender });
       console.log(data);
       this.update();
       return data;
@@ -114,6 +114,14 @@ class call_blockchain {
     }
   }
 
+  async ingresar(account, amount) {
+    try {
+      var completo = await this.contract.methods.ingreso(account, amount).send({from: account});
+      return completo;
+    } catch(error) {
+      console.error(error);
+    }
+  }
 
 }
 //
@@ -130,10 +138,31 @@ blockchain.init_web3();
 //accounts = blockchain.get_addresses();
 //accounts = blockchain.get_addresses();
 //console.log(accounts[0]);
+
+//FUNCIÓN PARA DAR DE ALTA A UN USUARIO NUEVO (RETURNS @ ETHEREUM):
+var new_user;
 (async () => {
   var result = await blockchain.signup_user();
   console.log(result);
-})()
+  new_user = result;
+})(); 
+//FUNCIÓN PARA VER EL BALANCE:
+(async () => {
+  var result = await blockchain.get_Balance(new_user);
+  console.log(result);
+})();
+
+//FUNCIÓN PARA INGRESAR MONEDAS:
+(async () => {
+  var result = await blockchain.ingresar(new_user, 50);
+  console.log(result);
+})();
+//FUNCIÓN PARA VER EL BALANCE:
+(async () => {
+  var result = await blockchain.get_Balance(new_user);
+  console.log(result);
+})();
+
 //console.log(result);
 // var cuenta1 = "0x97aa547e791f83288520898f849c3119175050c7";
 // var cuenta2 = "0xe2b0a73bc78f65f5a7c100b6b4b758baca30a7b7";
