@@ -141,27 +141,36 @@ blockchain.init_web3();
 
 //FUNCIÓN PARA DAR DE ALTA A UN USUARIO NUEVO (RETURNS @ ETHEREUM):
 var new_user;
-(async () => {
-  var result = await blockchain.signup_user();
-  console.log(result);
-  new_user = result;
-})(); 
+ setTimeout(function () {
+  (async () => {
+    var result = await blockchain.signup_user();
+    new_user = result;
+  })(); 
+ }, 1000);
+
 //FUNCIÓN PARA VER EL BALANCE:
-(async () => {
-  var result = await blockchain.get_Balance(new_user);
-  console.log(result);
-})();
+setTimeout(function () {
+  (async () => {
+    var result = await blockchain.get_Balance(new_user);
+  })();
+ }, 3000);
+
 
 //FUNCIÓN PARA INGRESAR MONEDAS:
-(async () => {
-  var result = await blockchain.ingresar(new_user, 50);
-  console.log(result);
-})();
+setTimeout(function () {
+  (async () => {
+    var result = await blockchain.ingresar(new_user, 50);
+    console.log(result);
+  })();
+ }, 6000);
+
 //FUNCIÓN PARA VER EL BALANCE:
-(async () => {
-  var result = await blockchain.get_Balance(new_user);
-  console.log(result);
-})();
+setTimeout(function () {
+  (async () => {
+    var result = await blockchain.get_Balance(new_user);
+  })();
+ }, 9000);
+
 
 //console.log(result);
 // var cuenta1 = "0x97aa547e791f83288520898f849c3119175050c7";
