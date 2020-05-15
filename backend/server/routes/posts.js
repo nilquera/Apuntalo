@@ -91,8 +91,8 @@ app.post("/posts", [verifyToken], (req, res) => {
       apikey: process.env.EAPI_KEY,
       host: process.env.EHOST,
       port: process.env.EPORT,
-      ssl: true,
-      rejectUnauthorized: false,
+      // ssl: true,
+      // rejectUnauthorized: false,
     });
     console.log("[ connected etherpad ]");
     let args = {
@@ -113,6 +113,7 @@ app.post("/posts", [verifyToken], (req, res) => {
         date: body.date,
         body: body.body,
         subject: body.subjectId,
+        price: body.price,
         creator: req.user._id,
         padID: newPadID,
       });
@@ -145,7 +146,7 @@ app.post("/posts", [verifyToken], (req, res) => {
 // Update Post values
 app.put("/posts/:id", [verifyToken], (req, res) => {
   let id = req.params.id;
-  let body = _.pick(req.body, ["title", "votes", "favs"]);
+  let body = _.pick(req.body, ["title", "votes", "favs", "price"]);
   if (body.votes) {
     body["meta.votes"] = body.votes;
     delete body.votes;
