@@ -1,5 +1,6 @@
 <div class="newFile" *ngIf="this.esAutor">
   <button type="button" class="btn btn-success" (click)="this.router.navigate(['edit/'+this.id]);"><i class="fas fa-pencil-alt"></i> Editar</button>
+  <p></p><button type="button" class="btn btn-success" (click)="this.router.navigate(['datos/'+this.id]);"><i class="fas fa-file"></i> Editar Datos</button>
   <p></p><button type="button" class="btn btn-success" (click)="showForm($event)"><i class="fas fa-user-plus"></i> Añadir Participante</button><p>
   <div class="newParticipant" *ngIf="this.esAutor">
     <form class="formBox" [formGroup]="addParticipant" (ngSubmit)="onSubmit(addParticipant.value)">
@@ -27,8 +28,8 @@
   </div>
   <div class="row">
     <div class="col"><i class="fas fa-user-edit"></i> Creado por {{document.creator.username}}</div>
-    <div class="col"><i class="fas fa-thumbs-up"></i> Votos: {{document.meta.votes}}</div>
     <div class="col"><i class="fas fa-heart"></i> Favoritos: {{document.meta.favs}}</div>
+        <div class="col"><i class="fas fa-coins"></i> Precio: {{document.price}}</div>
   </div>
   </div>
 </div>

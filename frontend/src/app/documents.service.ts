@@ -24,4 +24,9 @@ export class DocumentsService {
     var headers = { 'Authorization': token};
     return this.http.put<any>('api/posts/'+post+'/'+user, {post}, {headers});
   }
+
+  editDocument(post, title, price, token){
+    var headers = { 'Authorization': token};
+    return this.http.put<any>('api/posts/'+post, {title,price}, {headers});
+  }
 }

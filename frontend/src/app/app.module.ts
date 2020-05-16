@@ -26,6 +26,8 @@ import { UserService } from './user.service';
 import { EditComponent } from './edit/edit.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ComprarComponent } from './comprar/comprar.component';
+import { DatosComponent } from './datos/datos.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
     DesconectarComponent,
     DocumentoComponent,
     NewPostComponent,
-    EditComponent
+    EditComponent,
+    ComprarComponent,
+    DatosComponent
   ],
   imports: [
     BrowserModule,
