@@ -33,7 +33,7 @@ app.get("/bc/balance", verifyToken, async (req, res) => {
 });
 
 //Compra post (postid)
-app.get("/bc/purchase", verifyToken, (req, res) => {
+app.post("/bc/purchase", verifyToken, (req, res) => {
   let { blockchain } = require("../server");
   let { postid } = req.body;
   let uid = req.user._id;
@@ -108,7 +108,7 @@ app.get("/bc/purchase", verifyToken, (req, res) => {
 });
 
 // Ingressa pasta a l'usuari que demana (token)
-app.get("/bc/ingresar", verifyToken, async (req, res) => {
+app.post("/bc/ingresar", verifyToken, async (req, res) => {
   let { blockchain } = require("../server");
   let { amount } = req.body;
 

@@ -61,4 +61,14 @@ export class DocumentoComponent implements OnInit {
     });
   }
 
+  comprar(){
+    this.documentS.comprarDocument(this.id, localStorage.getItem('mytoken')).subscribe(data => {
+      if(data.ok == 'true'){
+        console.log('xd has comprat')
+      }
+      else{
+        console.log('no tens diners');
+      }
+    });
+  }
 }

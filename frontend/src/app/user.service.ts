@@ -12,4 +12,14 @@ export class UserService {
     var headers = { 'Authorization': token};
     return this.http.get<any>('api/users/'+ userId, {headers});
   }
+
+  getBalance(token){
+    var headers = { 'Authorization': token};
+    return this.http.get<any>('api/bc/balance', {headers});
+  }
+
+  addBalance(amount, token){
+    var headers = { 'Authorization': token};
+    return this.http.post<any>('api/bc/ingresar',amount,{headers});
+  }
 }
