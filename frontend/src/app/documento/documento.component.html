@@ -16,7 +16,7 @@
   <button type="button" class="btn btn-success" (click)="this.router.navigate(['edit/'+this.id]);"><i class="fas fa-pencil-alt"></i> Editar</button>
 </div>
 <div class="newFile" *ngIf="!this.esAutor && !this.esEditor">
-  <button type="button" class="btn btn-danger" (click)="this.router.navigate(['comprar/'+this.id]);"><i class="fas fa-shopping-cart"></i> Comprar</button>
+  <button type="button" class="btn btn-danger" (click)="comprar()"><i class="fas fa-shopping-cart"></i> Comprar</button>
 </div>
 <div class="docu">
   <div class="cgrid">
