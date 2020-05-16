@@ -30,12 +30,12 @@ app.get("/bc/balance", verifyToken, async (req, res) => {
   }
 });
 
-app.get("/bc/sendCoin", verifyToken, (req, res) => {
+app.post("/bc/sendCoin", verifyToken, (req, res) => {
   //sender (blockchain address), receiver, amount, post a comprar
 });
 
 // Ingressa pasta a l'usuari que demana (token)
-app.get("/bc/ingresar", verifyToken, async (req, res) => {
+app.post("/bc/ingresar", verifyToken, async (req, res) => {
   let { blockchain } = require("../server");
   let { amount } = req.body;
 

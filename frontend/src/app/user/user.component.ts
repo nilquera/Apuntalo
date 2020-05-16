@@ -70,7 +70,7 @@ export class UserComponent implements OnInit {
     }
   }
 
-  onSubmbit(value){
+  onSubmit(value){
     this.user.addBalance(value.cantidad,localStorage.getItem('mytoken')).subscribe(data => {
       if(data.ok){
         location.reload();
