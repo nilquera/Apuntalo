@@ -1,11 +1,12 @@
-require("./config/config");
+//require("./config/config");
+require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const { call_blockchain } = require("../../blockchain/web3-3");
+//const { call_blockchain } = require("../../blockchain/web3-3");
 
 const app = express();
 
@@ -36,11 +37,11 @@ mongoose
   })
   .then(() => {
     console.log("[ OK ] listening on port", process.env.PORT);
-    blockchain = new call_blockchain();
-    blockchain.init_web3();
+    // blockchain = new call_blockchain();
+    // blockchain.init_web3();
   })
   .catch((err) => {
     throw err;
   });
 
-module.exports.blockchain = blockchain;
+//module.exports.blockchain = blockchain;

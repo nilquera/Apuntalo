@@ -1,0 +1,20 @@
+// Environment
+NODE_ENV=
+
+// Default port
+PORT=
+
+// Token Expiration Date
+EXPIRATION_TOKEN=
+
+// Seed
+SEED=
+
+// Database
+URLDB=
+
+// Etherpad
+EPORT=
+EHOST=
+EURL=
+EAPI_KEY=
