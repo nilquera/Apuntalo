@@ -53,7 +53,9 @@ export class DocumentoComponent implements OnInit {
     console.log(localStorage.getItem('mytoken'));
     this.documentS.addParticipant(this.id,value.name,localStorage.getItem('mytoken')).subscribe(data => {
       if(data.ok){
-        location.reload();
+        let myelement = document.getElementsByClassName('newParticipant') as HTMLCollectionOf<HTMLElement>;
+        myelement[0].style.display = "none";  
+        this.router.navigate(['/documento/'+this.id]);
       }
       else{
         window.alert('ID invalido!');

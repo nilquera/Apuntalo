@@ -20,6 +20,6 @@ export class UserService {
 
   addBalance(amount, token){
     var headers = { 'Authorization': token};
-    return this.http.post<any>('api/bc/ingresar',amount,{headers});
+    return this.http.post<any>('api/bc/ingresar',{amount},{headers});
   }
 }

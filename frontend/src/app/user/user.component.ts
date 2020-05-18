@@ -73,7 +73,7 @@ export class UserComponent implements OnInit {
   onSubmit(value){
     this.user.addBalance(value.cantidad,localStorage.getItem('mytoken')).subscribe(data => {
       if(data.ok){
-        location.reload();
+        this.router.navigate(['login']);
       }
       else{
         window.alert('ID invalido!');

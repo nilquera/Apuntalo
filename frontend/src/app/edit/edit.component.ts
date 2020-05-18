@@ -29,7 +29,7 @@ export class EditComponent implements OnInit {
         this.router.navigate(['']);
       }
       this.padID = data.postDB.padID;
-      this.padURL = 'http://localhost:9001/p/'+ this.padID;
+      this.padURL = 'https://nidorino.fib.upc.edu:9002/p/'+ this.padID;
     });
   }
 
