@@ -122,6 +122,8 @@ class call_blockchain {
   }
 
 }
+
+/*
 //
 // console.log("invocando objeto...");
 blockchain = new call_blockchain();
@@ -221,5 +223,5 @@ setTimeout(function () {
 // setTimeout(function () {
 //   console.log("<-------------FIN DEL TESTEO------------->");
 // }, 32000);
-
+*/
 module.exports.call_blockchain = call_blockchain;
