@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const { verifyToken } = require("../middlewares/authentication");
 const Post = require("../models/post");
+const User = require("../models/user");
 let ObjectId = require("mongoose").Types.ObjectId;
 
 // Retorna el balance de l'usuari que demana (token)
@@ -46,7 +47,7 @@ app.post("/bc/purchase", verifyToken, (req, res) => {
     });
   }
 
-  Post.findById(postid, "creator price", async (err, postDB) => {
+  Post.findById(postid, "creator price editors", (err, postDB) => {
     if (err) {
       return res.status(500).json({
         ok: false,
@@ -69,13 +70,23 @@ app.post("/bc/purchase", verifyToken, (req, res) => {
       });
     }
 
-    try {
-      User.findById(
-        creator,
-        "blockchain_address",
-        (err, blockchain_address) => blockchain_address
-      ).then(async (saddress) => {
-        console.log(saddress);
+    User.findById(
+      postDB.creator,
+      "blockchain_address",
+      async (err, creatorDB) => {
+        if (err) {
+          return res.status(500).json({
+            ok: false,
+            err,
+          });
+        }
+        if (!creatorDB) {
+          return res.status(500).json({
+            ok: false,
+            err,
+          });
+        }
+
         let ubalance = await blockchain.get_Balance(uaddress);
         // Comprovar balance > price
         if (ubalance < postDB.price) {
@@ -85,23 +96,50 @@ app.post("/bc/purchase", verifyToken, (req, res) => {
           });
         }
 
-        let transaction = await send_coin(uaddress, saddress, postDB.price);
-        console.log(transaction);
-        return;
-      });
-    } catch (e) {
-      return res.status(400).json({
-        ok: false,
-        e,
-      });
-    }
-    // finally {
-    //   console.log(postDB);
-    //   return res.json({
-    //     ok: true,
-    //     post: postDB,
-    //   });
-    // }
+        let body = {
+          editors: postDB.editors,
+        };
+        if (body.editors.indexOf(uid) !== -1) body.editors.push(uid);
+        else {
+          return res.status(400).json({
+            ok: false,
+            err: {
+              message: `Buyer is already an editor`,
+            },
+          });
+        }
+
+        let transaction = await blockchain
+          .send_coin(uaddress, creatorDB.blockchain_address, postDB.price)
+          .catch((err) => {
+            return res.status(400).json({
+              ok: false,
+              err: {
+                message: `Internal error when making the transaction`,
+              },
+            });
+          });
+
+        Post.findByIdAndUpdate(
+          postid,
+          body,
+          { new: true, runValidators: true, context: "query" },
+          (err, postDB) => {
+            if (err) {
+              return res.status(500).json({
+                ok: false,
+                err,
+              });
+            }
+
+            res.json({
+              ok: true,
+              post: postDB,
+            });
+          }
+        );
+      }
+    );
   });
 
   //sender (blockchain address), receiver, amount, post a comprar
@@ -133,7 +171,6 @@ app.post("/bc/ingresar", verifyToken, async (req, res) => {
 
   try {
     let ret = await blockchain.ingresar(uaddress, amount);
-    console.log(ret);
     return res.json({
       ok: true,
       ingreso: amount,

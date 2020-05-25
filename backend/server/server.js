@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-//const { call_blockchain } = require("../../blockchain/web3-3");
+const { call_blockchain } = require("../../blockchain/web3-3");
 
 const app = express();
 
@@ -33,15 +33,14 @@ mongoose
   })
   .then(() => {
     console.log("[ OK ] connected to database");
-    app.listen(process.env.PORT);
+    app.listen(process.env.PORT, "127.0.0.1");
   })
   .then(() => {
     console.log("[ OK ] listening on port", process.env.PORT);
-    // blockchain = new call_blockchain();
-    // blockchain.init_web3();
+    blockchain = new call_blockchain();
+    blockchain.init_web3();
+    module.exports.blockchain = blockchain;
   })
   .catch((err) => {
     throw err;
   });
-
-//module.exports.blockchain = blockchain;
