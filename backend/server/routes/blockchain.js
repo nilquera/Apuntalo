@@ -99,7 +99,7 @@ app.post("/bc/purchase", verifyToken, (req, res) => {
         let body = {
           editors: postDB.editors,
         };
-        if (body.editors.indexOf(uid) !== -1) body.editors.push(uid);
+        if (body.editors.indexOf(uid) === -1) body.editors.push(uid);
         else {
           return res.status(400).json({
             ok: false,
